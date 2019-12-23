@@ -3,7 +3,7 @@ import { useLayoutEffect, useRef } from 'react';
 import * as ReactDOM from 'react-dom';
 import styles from './Toast.style.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { addRootElement, createElement } from '../lib/generateElement';
+import { addRootElement } from '../lib/generateElement';
 
 export interface ConfigArgs {
   time?: number;
@@ -20,7 +20,7 @@ let toastComponentList: any[] = [];
 const init = () => {
   const toastContainer = document.getElementById(styles['toast_container']);
   if (!toastContainer) {
-    addRootElement(createElement(styles['toast_container']));
+    addRootElement(styles['toast_container']);
   }
   if (!toastComponentList || !Array.isArray(toastComponentList)) {
     toastComponentList = [];

@@ -36,7 +36,8 @@
   background: rgba(0, 0, 10, 0.8);
   box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.2);
   border-radius: 40px;
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   color: #fff;
   font-size: 16px;
   text-align: center;

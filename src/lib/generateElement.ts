@@ -1,9 +1,5 @@
-export const createElement = (id: string): HTMLElement => {
+export const addRootElement = (id: string) => {
   const element = document.createElement('div');
   element.setAttribute('id', id);
-  return element;
-};
-
-export const addRootElement = (rootElem: HTMLElement) => {
-  document.body.appendChild(rootElem);
+  document.body.appendChild(element);
 };
