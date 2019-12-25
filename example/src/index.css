@@ -23,24 +23,28 @@ header {
   top: 0;
   right: 0;
   left: 0;
-  padding: 20px 50px;
+  z-index: 10000;
+  padding: 20px 0;
+  background-color: #fff;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
   font-size: 20px;
   color: #ee6e73;
 }
 
 header h1 {
-  width: 1200px;
+  width: 1100px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 0 30px;
   font-size: 24px;
   font-weight: 300;
 }
 
 .container {
-  width: 1200px;
+  width: 1100px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 150px 50px;
+  padding: 150px 30px;
 }
 
 h2 {
@@ -73,6 +77,13 @@ button {
   white-space: nowrap;
 }
 
+p {
+  margin-bottom: 20px;
+  color: #666;
+  font-weight: 300;
+  font-size: 18px;
+}
+
 button:active {
   background-color: #ff7479;
 }
@@ -87,4 +98,10 @@ button + button {
 
 .example_area + .example_area {
   margin-top: 50px;
+}
+
+.interaction-toast-message.my-toast {
+  background-color: rgba(255, 115, 122, 0.8);
+  color: #fff;
+  font-size: 20px;
 }

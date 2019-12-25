@@ -5,12 +5,12 @@ import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 
-const JsxHighlighter = ({ children }) => {
+const CommonHighlighter = ({ children, language = 'jsx' }) => {
   return (
-    <SyntaxHighlighter language="jsx" style={prism} customStyle={{ padding: 20 }}>
+    <SyntaxHighlighter language={language} style={prism} customStyle={{ padding: 20 }}>
       {children}
     </SyntaxHighlighter>
   );
 };
 
-export default JsxHighlighter;
+export default CommonHighlighter;
