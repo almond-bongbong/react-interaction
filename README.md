@@ -6,7 +6,7 @@
 
 ## Components
 
-- [ ] toast popup
+- [x] toast popup
 - [ ] alert
 - [ ] confirm
 - [ ] tooltip
@@ -17,21 +17,11 @@
 npm install --save react-interaction
 ```
 
-## Usage
+## Documents
 
-```tsx
-import * as React from 'react'
+### [Live demo](https://www.naver.com)
 
-import MyComponent from 'react-interaction'
-
-class Example extends React.Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
-```
+...
 
 ## License
 
