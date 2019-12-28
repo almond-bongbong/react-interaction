@@ -1,6 +1,7 @@
 import React from 'react';
 import { toast } from 'react-interaction';
 import CommonHighlighter from './CommonHighlighter';
+import myToast from './custom/myToast';
 
 export default function App() {
   return (
@@ -71,6 +72,37 @@ export default function App() {
 >
   My custom toast
 </button>`}</CommonHighlighter>
+      </div>
+
+      <div className="example_area">
+        <h3>Use default settings</h3>
+        <p>
+          Can be used by mapping.
+        </p>
+        <div className="playground">
+          <button
+            type="button"
+            onClick={() => myToast('Default settings toast')}
+          >
+            Default settings toast
+          </button>
+        </div>
+        <CommonHighlighter>{`import { toast } from 'react-interaction';
+
+export default (message) => {
+  toast(message, {
+    time: 1000,
+    className: 'my-toast',
+  });
+}
+`}</CommonHighlighter>
+        <CommonHighlighter>{`<button
+  type="button"
+  onClick={() => myToast('Default settings toast')}
+>
+  Default settings toast
+</button>
+`}</CommonHighlighter>
       </div>
     </div>
   );
