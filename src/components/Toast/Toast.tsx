@@ -3,7 +3,7 @@ import { ReactNode, useLayoutEffect, useRef } from 'react';
 import * as ReactDOM from 'react-dom';
 import styles from './Toast.style.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { addRootElement } from '../lib/generateElement';
+import { addRootElement } from '../../lib/generateElement';
 
 export interface ToastOptions {
   time?: number;
