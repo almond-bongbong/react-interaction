@@ -89,12 +89,14 @@ export default function App() {
         </div>
         <CommonHighlighter>{`import { toast } from 'react-interaction';
 
-export default (message) => {
+const myToast = () => {
   toast(message, {
     time: 1000,
     className: 'my-toast',
   });
-}
+};
+
+export default myToast;
 `}</CommonHighlighter>
         <CommonHighlighter>{`<button
   type="button"

@@ -1,8 +1,10 @@
 import { toast } from 'react-interaction';
 
-export default (message) => {
+const myToast = (message) => {
   toast(message, {
     time: 1000,
     className: 'my-toast',
   });
-}
+};
+
+export default myToast;
