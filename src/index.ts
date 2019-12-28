@@ -1,1 +1,1 @@
-export { default as toast, toastConfig } from './components/Toast';
+export { default as toast, ToastOptions } from './components/Toast';

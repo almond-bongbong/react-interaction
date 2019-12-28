@@ -5,12 +5,17 @@ import styles from './Toast.style.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { addRootElement } from '../lib/generateElement';
 
-export interface ConfigArgs {
+export interface ToastOptions {
   time?: number;
   className?: string;
 }
 
-export interface ToastProps {
+const defaultOptions: ToastOptions = {
+  time: 3000,
+  className: '',
+};
+
+interface ToastProps {
   className: string;
   message: string;
 }
@@ -24,16 +29,8 @@ const init = () => {
   if (!toastComponentList || !Array.isArray(toastComponentList)) {
     toastComponentList = [];
   }
-};
 
-const defaultOptions: ConfigArgs = {
-  time: 3000,
-  className: '',
-};
-
-export const toastConfig = (options: ConfigArgs) => {
-  if (options.time) defaultOptions.time = options.time;
-  if (options.className) defaultOptions.className = options.className;
+  renderDOM();
 };
 
 const renderDOM = () => {
@@ -79,19 +76,19 @@ const Toast: React.FunctionComponent<ToastProps> = ({ className, message }) => {
 
 const toast = (
   message: string | ReactNode,
-  options: ConfigArgs = defaultOptions,
+  options: ToastOptions,
 ) => {
   init();
-  renderDOM();
 
+  const mergedOptions = { ...defaultOptions, ...options };
   const id = Date.now();
 
   toastComponentList.push({
     id,
-    options,
+    options: mergedOptions,
     component:
       typeof message === 'string' ? (
-        <Toast message={message} className={options.className || ''} />
+        <Toast message={message} className={mergedOptions.className || ''} />
       ) : (
         message
       ),
@@ -102,7 +99,7 @@ const toast = (
     const index = toastComponentList.findIndex(t => t.id === id);
     toastComponentList.splice(index, 1);
     renderDOM();
-  }, options.time);
+  }, mergedOptions.time);
 };
 
 export default toast;

@@ -51,7 +51,6 @@ export default function App() {
           <button
             type="button"
             onClick={() => toast('My custom toast', {
-              time: 5000,
               className: 'my-toast',
             })}
           >
@@ -67,7 +66,6 @@ export default function App() {
         <CommonHighlighter>{`<button
   type="button"
   onClick={() => toast('My custom toast', {
-    time: 5000,
     className: 'my-toast',
   })}
 >
