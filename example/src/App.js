@@ -1,5 +1,5 @@
 import React from 'react';
-import { toast } from 'react-interaction';
+import { toast, alert } from 'react-interaction';
 import CommonHighlighter from './CommonHighlighter';
 import myToast from './custom/myToast';
 
@@ -103,6 +103,23 @@ export default myToast;
   onClick={() => myToast('Default settings toast')}
 >
   Default settings toast
+</button>
+`}</CommonHighlighter>
+      </div>
+
+      <h2>Alert</h2>
+      <div className="example_area">
+        <h3>Basic usage</h3>
+        <div className="playground">
+          <button
+            type="button"
+            onClick={() => alert('This is a alert message')}
+          >
+            Basic alert
+          </button>
+        </div>
+        <CommonHighlighter>{`<button type="button" onClick={() => alert('This is a alert message')}>
+  Basic alert
 </button>
 `}</CommonHighlighter>
       </div>
