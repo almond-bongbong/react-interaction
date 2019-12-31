@@ -69,13 +69,13 @@ footer a {
 
 .links a {
   color: #999;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   text-decoration: none;
 }
 
 .links a + a {
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .container {
