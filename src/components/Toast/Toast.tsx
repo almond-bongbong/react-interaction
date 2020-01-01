@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode, useLayoutEffect, useRef } from 'react';
+import { CSSProperties, ReactNode, useLayoutEffect, useRef } from 'react';
 import * as ReactDOM from 'react-dom';
 import styles from './Toast.style.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -8,6 +8,7 @@ import { addRootElement } from '../../lib/generateElement';
 export interface ToastOptions {
   time?: number;
   className?: string;
+  style?: CSSProperties;
 }
 
 const defaultOptions: ToastOptions = {
@@ -18,6 +19,7 @@ const defaultOptions: ToastOptions = {
 interface ToastProps {
   className: string;
   message: string;
+  customStyle?: CSSProperties;
 }
 
 let toastComponentList: any[] = [];
@@ -50,7 +52,11 @@ const renderDOM = () => {
   );
 };
 
-const Toast: React.FunctionComponent<ToastProps> = ({ className, message }) => {
+const Toast: React.FunctionComponent<ToastProps> = ({
+  message,
+  customStyle,
+  className,
+}) => {
   const messageDOM: any = useRef();
 
   useLayoutEffect(() => {
@@ -66,6 +72,7 @@ const Toast: React.FunctionComponent<ToastProps> = ({ className, message }) => {
   return (
     <div ref={messageDOM} className={`${styles['toast-message']}`}>
       <div
+        style={customStyle}
         className={`${styles['toast-content']} interaction-toast-message ${className}`}
       >
         {message}
@@ -74,10 +81,7 @@ const Toast: React.FunctionComponent<ToastProps> = ({ className, message }) => {
   );
 };
 
-const toast = (
-  message: string | ReactNode,
-  options: ToastOptions,
-) => {
+const toast = (message: string | ReactNode, options: ToastOptions) => {
   init();
 
   const mergedOptions = { ...defaultOptions, ...options };
@@ -88,7 +92,11 @@ const toast = (
     options: mergedOptions,
     component:
       typeof message === 'string' ? (
-        <Toast message={message} className={mergedOptions.className || ''} />
+        <Toast
+          message={message}
+          customStyle={mergedOptions.style}
+          className={mergedOptions.className || ''}
+        />
       ) : (
         message
       ),
