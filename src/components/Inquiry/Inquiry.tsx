@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { addRootElement } from '../../lib/generateElement';
-import styles from './Confirm.style.css';
+import styles from './Inquiry.style.css';
 
 const confirmContainer = document.getElementById('confirm_container');
 if (!confirmContainer) addRootElement('confirm_container');
 
-const confirm = (message: string | React.ReactNode) =>
+const inquiry = (message: string | React.ReactNode) =>
   new Promise(resolve => {
     const container: HTMLElement | null = document.getElementById(
       'confirm_container',
@@ -36,4 +36,4 @@ const confirm = (message: string | React.ReactNode) =>
     );
   });
 
-export default confirm;
+export default inquiry;

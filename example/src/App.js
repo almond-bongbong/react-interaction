@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { toast, confirm } from 'react-interaction';
+import { toast, notice, inquiry } from 'react-interaction';
 import CommonHighlighter from './CommonHighlighter';
 import myToast from './custom/myToast';
 
@@ -12,7 +12,7 @@ export default function App() {
             <h1>react-interaction</h1>
             <div className="links">
               <a href="#toast">toast</a>
-              <a href="#alert">alert</a>
+              <a href="#notice">notice</a>
               <a href="#confirm">confirm</a>
             </div>
           </div>
@@ -38,14 +38,14 @@ export default function App() {
 
         <div className="example-area">
           <h3>Time</h3>
-          <p>
-            The default time is 3 seconds.
-          </p>
+          <p>The default time is 3 seconds.</p>
           <div className="playground">
             <button
               type="button"
               className="example-button"
-              onClick={() => toast('Message shown for 1 seconds.', { time: 1000 })}
+              onClick={() =>
+                toast('Message shown for 1 seconds.', { time: 1000 })
+              }
             >
               for 1 seconds
             </button>
@@ -59,20 +59,20 @@ export default function App() {
 
         <div className="example-area">
           <h3>Custom Style</h3>
-          <p>
-            Using style props
-          </p>
+          <p>Using style props</p>
           <div className="playground">
             <button
               type="button"
               className="example-button"
-              onClick={() => toast('My custom toast', {
-                style: {
-                  borderRadius: 0,
-                  backgroundColor: '#fff',
-                  color: '#8fc5fd',
-                }
-              })}
+              onClick={() =>
+                toast('My custom toast', {
+                  style: {
+                    borderRadius: 0,
+                    backgroundColor: '#fff',
+                    color: '#8fc5fd',
+                  },
+                })
+              }
             >
               My custom toast
             </button>
@@ -95,16 +95,16 @@ export default function App() {
         </div>
 
         <div className="example-area">
-          <p>
-            You can override the style with classname.
-          </p>
+          <p>You can override the style with classname.</p>
           <div className="playground">
             <button
               type="button"
               className="example-button"
-              onClick={() => toast('My custom toast', {
-                className: 'my-toast',
-              })}
+              onClick={() =>
+                toast('My custom toast', {
+                  className: 'my-toast',
+                })
+              }
             >
               My custom toast
             </button>
@@ -131,9 +131,7 @@ export default function App() {
 
         <div className="example-area">
           <h3>Use default settings</h3>
-          <p>
-            Can be used by mapping.
-          </p>
+          <p>Can be used by mapping.</p>
           <div className="playground">
             <button
               type="button"
@@ -167,41 +165,49 @@ export default myToast;
           </CommonHighlighter>
         </div>
 
-        <h2 id="alert">Alert</h2>
+        <h2 id="notice">Notice</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
           <div className="playground">
             <button
               type="button"
               className="example-button"
-              onClick={() => alert('This is a alert message')}
+              onClick={() =>
+                notice('This is a notice message').then(() =>
+                  console.log('closed'),
+                )
+              }
             >
-              Basic alert
+              Basic notice
             </button>
           </div>
           <CommonHighlighter>
-            {`<button type="button" onClick={() => alert('This is a alert message')}>
-  Basic alert
+            {`<button
+  type="button"
+  className="example-button"
+  onClick={() => notice('This is a notice message').then(() => console.log('closed'))}
+>
+  Basic notice
 </button>
 `}
           </CommonHighlighter>
         </div>
 
-        <h2 id="confirm">Confirm</h2>
+        <h2 id="confirm">Inquiry</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
           <div className="playground">
             <button
               type="button"
               className="example-button"
-              onClick={() => confirm('Are you sure?')}
+              onClick={() => inquiry('Are you sure?')}
             >
               Basic confirm
             </button>
           </div>
           <CommonHighlighter>
-            {`<button type="button" onClick={() => alert('This is a alert message')}>
-  Basic alert
+            {`<button type="button" onClick={() => inquiry('This is a notice message')}>
+  Basic notice
 </button>
 `}
           </CommonHighlighter>
@@ -210,7 +216,13 @@ export default myToast;
 
       <footer>
         <div className="footer-content">
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/almond-bongbong">https://github.com/almond-bongbong</a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/almond-bongbong"
+          >
+            https://github.com/almond-bongbong
+          </a>
         </div>
       </footer>
     </Fragment>

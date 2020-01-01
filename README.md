@@ -7,8 +7,8 @@
 ## Components
 
 - [x] toast popup
-- [ ] alert
-- [ ] confirm
+- [ ] notice
+- [ ] inquiry
 - [ ] tooltip
 
 ## Install
