@@ -13,7 +13,7 @@ export default function App() {
             <div className="links">
               <a href="#toast">toast</a>
               <a href="#notice">notice</a>
-              <a href="#confirm">confirm</a>
+              <a href="#inquiry">inquiry</a>
             </div>
           </div>
         </header>
@@ -58,7 +58,7 @@ export default function App() {
         </div>
 
         <div className="example-area">
-          <h3>Custom Style</h3>
+          <h3>Custom style</h3>
           <p>Using style props</p>
           <div className="playground">
             <button
@@ -193,7 +193,76 @@ export default myToast;
           </CommonHighlighter>
         </div>
 
-        <h2 id="confirm">Inquiry</h2>
+        <div className="example-area">
+          <h3>Custom style</h3>
+          <div className="playground">
+            <button
+              type="button"
+              className="example-button"
+              onClick={() =>
+                notice('This is a notice message', {
+                  dimmedClassName: 'my-notice-dimmed',
+                  dimmedStyle: {
+                    background: 'none'
+                  },
+                  contentClassName: 'my-notice-content',
+                  contentStyle: {
+                    width: 400,
+                    backgroundColor: '#666'
+                  },
+                  messageClassName: 'my-notice-message',
+                  messageStyle: {
+                    color: '#fff',
+                    fontSize: 20,
+                  },
+                  okClassName: 'my-notice-ok',
+                  okStyle: {
+                    border: 'none',
+                    backgroundColor: '#818388',
+                    color: '#fff'
+                  },
+                  okText: 'Close',
+                })
+              }
+            >
+              Notice
+            </button>
+          </div>
+          <CommonHighlighter>
+            {`<button
+  type="button"
+  className="example-button"
+  onClick={() => notice('This is a notice message', {
+    dimmedClassName: 'my-notice-dimmed',
+    contentClassName: 'my-notice-content',
+    messageClassName: 'my-notice-message',
+    okClassName: 'my-notice-ok',
+    dimmedStyle: {
+      background: 'none'
+    },
+    contentStyle: {
+      width: 400,
+      backgroundColor: '#666'
+    },
+    messageStyle: {
+      color: '#fff',
+      fontSize: 20,
+    },
+    okStyle: {
+      border: 'none',
+      backgroundColor: '#818388',
+      color: '#fff'
+    },
+    okText: 'Close',
+  })}
+>
+  Notice
+</button>
+`}
+          </CommonHighlighter>
+        </div>
+
+        <h2 id="inquiry">Inquiry</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
           <div className="playground">
@@ -202,7 +271,7 @@ export default myToast;
               className="example-button"
               onClick={() => inquiry('Are you sure?')}
             >
-              Basic confirm
+              Basic inquiry
             </button>
           </div>
           <CommonHighlighter>
