@@ -1,1 +1,1 @@
-export { default } from './Inquiry';
+export { default, InquiryOptions } from './Inquiry';
