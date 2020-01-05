@@ -110,7 +110,7 @@ export default function App() {
             </button>
           </div>
           <CommonHighlighter language="css">
-            {`.interaction-toast-message.my-toast {
+            {`body .my-toast {
   background-color: rgba(255, 115, 122, 0.8);
   color: #fff;
   font-size: 20px;
