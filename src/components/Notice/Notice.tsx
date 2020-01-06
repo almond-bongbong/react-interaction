@@ -27,10 +27,10 @@ const notice = (message: string, options: NoticeOptions = {}) =>
       container = document.getElementById(containerId);
     }
 
-    const handleClose = () => {
+    const handleClose = (isConfirmed: boolean) => {
       if (container) {
         ReactDOM.unmountComponentAtNode(container);
-        resolve();
+        resolve(isConfirmed);
       }
     };
 

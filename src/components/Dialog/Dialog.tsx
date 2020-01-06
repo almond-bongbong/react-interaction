@@ -33,8 +33,8 @@ const Dialog: React.FC<DialogProps> = ({
     }, 0);
   }, []);
 
-  const handleClose = () => {
-    flag.current = false;
+  const handleClose = (isConfirmed: boolean) => {
+    flag.current = isConfirmed;
     setActive(false);
   };
 
@@ -66,7 +66,7 @@ const Dialog: React.FC<DialogProps> = ({
               type="button"
               className={`${styles['dialog-button-cancel']} ${okClassName}`}
               style={okStyle}
-              onClick={handleClose}
+              onClick={() => handleClose(false)}
             >
               {cancelText}
             </button>
@@ -77,7 +77,7 @@ const Dialog: React.FC<DialogProps> = ({
               type="button"
               className={`${styles['dialog-button-ok']} ${okClassName}`}
               style={okStyle}
-              onClick={handleClose}
+              onClick={() => handleClose(true)}
             >
               {okText}
             </button>
