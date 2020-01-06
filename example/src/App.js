@@ -265,17 +265,20 @@ export default myToast;
         <h2 id="inquiry">Inquiry</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
+          <p>isConfirmed is true or false.</p>
           <div className="playground">
             <button
               type="button"
               className="example-button"
-              onClick={() => inquiry('Are you sure?')}
+              onClick={() => inquiry('Are you sure?').then(result => console.log(result))}
             >
               Basic inquiry
             </button>
           </div>
           <CommonHighlighter>
-            {`<button type="button" onClick={() => inquiry('This is a notice message')}>
+            {`<button type="button" onClick={() => {
+  inquiry('Are you sure?').then(isConfirmed => console.log(isConfirmed));
+}}>
   Basic notice
 </button>
 `}
