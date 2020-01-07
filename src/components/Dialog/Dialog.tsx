@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { ReactNode, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './Dialog.style.css';
 import { NoticeOptions } from '../Notice';
 import { InquiryOptions } from '../Inquiry';
+import { EventHandler } from '../../lib/EventHandler';
 
 interface DialogProps extends NoticeOptions, InquiryOptions {
   onClose: (flag?: boolean) => void;
   message: ReactNode;
 }
+
+const KEYPRESS_EVENT_NAME = 'keydown.dialog';
 
 const Dialog: React.FC<DialogProps> = ({
   message,
@@ -26,6 +29,18 @@ const Dialog: React.FC<DialogProps> = ({
 }) => {
   const [active, setActive] = useState<boolean>(false);
   const flag = useRef<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    EventHandler.addEventListener(KEYPRESS_EVENT_NAME, (e) => {
+      if (e.code === 'Escape') {
+        handleClose(false);
+      }
+    });
+
+    return () => {
+      EventHandler.removeEventListener(KEYPRESS_EVENT_NAME);
+    }
+  }, []);
 
   useLayoutEffect(() => {
     setTimeout(() => {
