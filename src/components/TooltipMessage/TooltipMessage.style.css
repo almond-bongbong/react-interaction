@@ -1,0 +1,6 @@
+.tooltip {
+  position: absolute;
+  top: 6000px;
+  left: 100px;
+  background-color: rgba(0, 0, 0, 0.3);
+}

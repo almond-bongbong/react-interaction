@@ -2,10 +2,10 @@ import * as React from 'react';
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './Dialog.style.css';
 import { NoticeOptions } from '../Notice';
-import { InquiryOptions } from '../Inquiry';
+import { CheckOptions } from '../Check';
 import { EventHandler } from '../../lib/EventHandler';
 
-interface DialogProps extends NoticeOptions, InquiryOptions {
+interface DialogProps extends NoticeOptions, CheckOptions {
   onClose: (flag?: boolean) => void;
   message: ReactNode;
 }
@@ -23,8 +23,8 @@ const Dialog: React.FC<DialogProps> = ({
   okClassName = '',
   okStyle,
   okText,
-  // cancelClassName = '',
-  // cancelStyle,
+  cancelClassName = '',
+  cancelStyle,
   cancelText,
 }) => {
   const [active, setActive] = useState<boolean>(false);
@@ -79,8 +79,8 @@ const Dialog: React.FC<DialogProps> = ({
             <button
               autoFocus
               type="button"
-              className={`${styles['dialog-button-cancel']} ${okClassName}`}
-              style={okStyle}
+              className={`${styles['dialog-button-cancel']} ${cancelClassName}`}
+              style={cancelStyle}
               onClick={() => handleClose(false)}
             >
               {cancelText}

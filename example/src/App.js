@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { toast, notice, inquiry } from 'react-interaction';
+import { toast, notice, check, Tooltip } from 'react-interaction';
 import CommonHighlighter from './CommonHighlighter';
 import myToast from './custom/myToast';
 
@@ -11,9 +11,9 @@ export default function App() {
           <div className="header-content">
             <h1>react-interaction</h1>
             <div className="links">
-              <a href="#toast">toast</a>
-              <a href="#notice">notice</a>
-              <a href="#inquiry">inquiry</a>
+              <a href="#toast">Toast</a>
+              <a href="#notice">Notice</a>
+              <a href="#check">Check</a>
             </div>
           </div>
         </header>
@@ -262,27 +262,123 @@ export default myToast;
           </CommonHighlighter>
         </div>
 
-        <h2 id="inquiry">Inquiry</h2>
+        <h2 id="check">Check</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
-          <p>isConfirmed is true or false.</p>
+          <p>The result is true or false in a Promise.</p>
           <div className="playground">
             <button
               type="button"
               className="example-button"
-              onClick={() => inquiry('Are you sure?').then(result => console.log(result))}
+              onClick={() => check('Are you sure?').then(console.log)}
             >
-              Basic inquiry
+              Basic check
             </button>
           </div>
           <CommonHighlighter>
             {`<button type="button" onClick={() => {
-  inquiry('Are you sure?').then(isConfirmed => console.log(isConfirmed));
+  check('Are you sure?').then(console.log);
 }}>
   Basic notice
 </button>
 `}
           </CommonHighlighter>
+        </div>
+
+        <div className="example-area">
+          <h3>Custom style</h3>
+          <div className="playground">
+            <button
+              type="button"
+              className="example-button"
+              onClick={() =>
+                check('Are you sure?', {
+                  dimmedClassName: 'my-check-dimmed',
+                  dimmedStyle: {
+                    background: 'none'
+                  },
+                  contentClassName: 'my-check-content',
+                  contentStyle: {
+                    width: 400,
+                    backgroundColor: '#666'
+                  },
+                  messageClassName: 'my-check-message',
+                  messageStyle: {
+                    color: '#fff',
+                    fontSize: 20,
+                  },
+                  okClassName: 'my-check-ok',
+                  okStyle: {
+                    border: 'none',
+                    backgroundColor: '#fafafa',
+                    color: '#333'
+                  },
+                  okText: 'Yes',
+                  cancelClassName: 'my-check-cancel',
+                  cancelStyle: {
+                    border: 'none',
+                    backgroundColor: '#999',
+                    color: '#fff'
+                  },
+                  cancelText: 'No',
+                }).then(console.log)
+              }
+            >
+              Check
+            </button>
+          </div>
+          <CommonHighlighter>
+            {`<button
+  type="button"
+  className="example-button"
+  onClick={() =>
+    check('Are you sure?', {
+      dimmedClassName: 'my-check-dimmed',
+      dimmedStyle: {
+        background: 'none'
+      },
+      contentClassName: 'my-check-content',
+      contentStyle: {
+        width: 400,
+        backgroundColor: '#666'
+      },
+      messageClassName: 'my-check-message',
+      messageStyle: {
+        color: '#fff',
+        fontSize: 20,
+      },
+      okClassName: 'my-check-ok',
+      okStyle: {
+        border: 'none',
+        backgroundColor: '#fafafa',
+        color: '#333'
+      },
+      okText: 'Yes',
+      cancelClassName: 'my-check-cancel',
+      cancelStyle: {
+        border: 'none',
+        backgroundColor: '#999',
+        color: '#fff'
+      },
+      cancelText: 'No',
+    }).then(console.log)
+  }
+>
+  Check
+</button>`}
+          </CommonHighlighter>
+        </div>
+
+        <h2 id="tooltip">Tooltip</h2>
+        <div className="example-area">
+          <h3>Basic usage</h3>
+          <div className="playground">
+            <Tooltip message="basic tooltip message">
+              <button type="button" className="example-button">
+                Basic tooltip
+              </button>
+            </Tooltip>
+          </div>
         </div>
       </div>
 

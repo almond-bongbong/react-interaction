@@ -6,7 +6,7 @@ import { CSSProperties } from 'react';
 
 const containerId = 'inquiry-container';
 
-export interface InquiryOptions {
+export interface CheckOptions {
   dimmedClassName?: string;
   dimmedStyle?: CSSProperties;
   contentClassName?: string;
@@ -21,7 +21,7 @@ export interface InquiryOptions {
   cancelText?: string;
 }
 
-const inquiry = (message: string | React.ReactNode, options: InquiryOptions) =>
+const check = (message: string | React.ReactNode, options: CheckOptions) =>
   new Promise(resolve => {
     let container: HTMLElement | null = document.getElementById(containerId);
 
@@ -49,4 +49,4 @@ const inquiry = (message: string | React.ReactNode, options: InquiryOptions) =>
     );
   });
 
-export default inquiry;
+export default check;
