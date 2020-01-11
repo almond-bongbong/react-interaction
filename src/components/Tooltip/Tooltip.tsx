@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import TooltipMessage from '../TooltipMessage';
+import styles from './Tooltip.style.css';
 
 interface TooltipProps {
   message: ReactNode;
@@ -8,6 +9,13 @@ interface TooltipProps {
 
 const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
   const [show, setShow] = useState<boolean>(false);
+  const triggerElementRef = useRef<HTMLSpanElement>(null);
+  const triggerOffset = triggerElementRef.current && {
+    top: triggerElementRef.current.offsetTop,
+    left: triggerElementRef.current.offsetLeft,
+    width: triggerElementRef.current.offsetWidth,
+    height: triggerElementRef.current.offsetHeight,
+  };
 
   const handleOver = () => {
     setShow(true);
@@ -19,10 +27,19 @@ const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
 
   return (
     <>
-      <span onMouseOver={handleOver} onMouseOut={handleOut}>
+      <span
+        ref={triggerElementRef}
+        onMouseOver={handleOver}
+        onMouseOut={handleOut}
+        className={styles['tooltip-trigger']}
+      >
         {children}
       </span>
-      {show && <TooltipMessage message={message} />}
+      <TooltipMessage
+        show={show}
+        message={message}
+        triggerOffset={triggerOffset}
+      />
     </>
   );
 };

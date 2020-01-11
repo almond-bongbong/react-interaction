@@ -379,6 +379,11 @@ export default myToast;
                 Basic tooltip
               </button>
             </Tooltip>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Categories
+            <Tooltip message="Please select a category to be displayed\nin breadcrumbs">
+              <span role="img" aria-label="tip">❗</span>
+           ️</Tooltip>
           </div>
         </div>
       </div>
