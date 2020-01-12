@@ -374,7 +374,7 @@ export default myToast;
           <h3>Basic usage</h3>
           <p>The location of the tooltip is calculated automatically.</p>
           <div className="playground">
-            <Tooltip message="basic tooltip message">
+            <Tooltip message="Basic tooltip message basic tooltip message basic tooltip message basic tooltip message">
               <button type="button" className="example-button">
                 Basic tooltip
               </button>
@@ -384,6 +384,11 @@ export default myToast;
             <Tooltip message="Please select a category to be displayed\nin breadcrumbs">
               <span role="img" aria-label="tip">❗</span>
            ️</Tooltip>
+            <Tooltip message="Basic tooltip Basic tooltip Basic tooltip Basic tooltip">
+              <button type="button" className="example-button">
+                Basic tooltip
+              </button>
+            </Tooltip>
           </div>
         </div>
       </div>

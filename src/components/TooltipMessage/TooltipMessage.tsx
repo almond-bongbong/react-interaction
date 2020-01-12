@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { addRootElement } from '../../lib/generateElement';
 import styles from './TooltipMessage.style.css';
 import { withNewline } from '../../lib/ReactStringUtil';
+import useForceUpdate from '../../hooks/useForceUpdate';
 
 interface TriggerOffset {
   top: number;
@@ -21,12 +22,12 @@ interface TooltipMessageProps {
 const containerId = 'tooltip-container';
 const ADJUSTMENT = 15;
 const tooltipDirection = {
-  TOP_LEFT: 'top left',
-  TOP_CENTER: 'top center',
-  TOP_RIGHT: 'top right',
-  BOTTOM_LEFT: 'bottom left',
-  BOTTOM_CENTER: 'bottom center',
-  BOTTOM_RIGHT: 'bottom right',
+  TOP_LEFT: 'top-left',
+  TOP_CENTER: 'top-center',
+  TOP_RIGHT: 'top-right',
+  BOTTOM_LEFT: 'bottom-left',
+  BOTTOM_CENTER: 'bottom-center',
+  BOTTOM_RIGHT: 'bottom-right',
 };
 
 const { round } = Math;
@@ -43,9 +44,8 @@ const calcLeft = (
   triggerLeft: number,
   triggerWidth: number,
   messageWidth: number,
-) => round(triggerLeft - messageWidth + triggerWidth / 2) + ADJUSTMENT;
-const calcRight = (triggerLeft: number, triggerWidth: number) =>
-  round(triggerLeft + triggerWidth / 2) - ADJUSTMENT;
+) => round(triggerLeft - (messageWidth - triggerWidth));
+const calcRight = (triggerLeft: number) => triggerLeft;
 
 const TooltipMessage: React.FC<TooltipMessageProps> = ({
   show,
@@ -54,9 +54,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
 }) => {
   let container: HTMLElement | null = document.getElementById(containerId);
   const messageElementRef = useRef<HTMLDivElement>(null);
-  const [direction] = useState(tooltipDirection.TOP_CENTER);
-  const [top, setTop] = useState<number>(-9999);
-  const [left, setLeft] = useState<number>(-9999);
+  const forceUpdate = useForceUpdate();
 
   if (!container) {
     addRootElement(containerId);
@@ -64,68 +62,100 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   }
 
   useEffect(() => {
+    window.addEventListener('resize', forceUpdate);
+
+    return () => {
+      window.removeEventListener('resize', forceUpdate);
+    };
+  }, []);
+
+  const direction = useMemo(() => {
+    const messageElement = messageElementRef.current;
+
+    if (triggerOffset && messageElement && messageElement.offsetTop) {
+      const messageWidth = messageElement.offsetWidth;
+      const messageHeight = messageElement.offsetHeight;
+      const triggerTop = triggerOffset.top;
+      const triggerLeft = triggerOffset.left;
+      const triggerWidth = triggerOffset.width;
+      const rightEnd =
+        Math.round(triggerLeft - messageWidth / 2 + triggerWidth / 2) +
+        messageWidth;
+      const leftEnd = Math.round(
+        triggerLeft - messageWidth / 2 + triggerWidth / 2,
+      );
+      const isOverRight = rightEnd + ADJUSTMENT > window.innerWidth;
+      const isOverLeft = leftEnd < 0;
+      const isOverTop = triggerTop - messageHeight - ADJUSTMENT < 0;
+
+      if (!isOverTop && isOverRight) return tooltipDirection.TOP_LEFT;
+      if (!isOverTop && isOverLeft) return tooltipDirection.TOP_RIGHT;
+      if (isOverTop) return tooltipDirection.BOTTOM_CENTER;
+      if (isOverRight && isOverTop) return tooltipDirection.BOTTOM_LEFT;
+      if (isOverLeft && isOverTop) return tooltipDirection.BOTTOM_RIGHT;
+    }
+
+    return tooltipDirection.TOP_CENTER;
+  }, [triggerOffset, window.innerWidth]);
+
+  const [top, left] = useMemo(() => {
     const messageElement = messageElementRef.current;
 
     if (triggerOffset && messageElement) {
       switch (direction) {
         case tooltipDirection.BOTTOM_CENTER:
-          setTop(calcBottom(triggerOffset.top, triggerOffset.height));
-          setLeft(
+          return [
+            calcBottom(triggerOffset.top, triggerOffset.height),
             calcCenter(
               triggerOffset.left,
               triggerOffset.width,
               messageElement.offsetWidth,
             ),
-          );
-          break;
+          ];
         case tooltipDirection.BOTTOM_LEFT:
-          setTop(calcBottom(triggerOffset.top, triggerOffset.height));
-          setLeft(
+          return [
+            calcBottom(triggerOffset.top, triggerOffset.height),
             calcLeft(
               triggerOffset.left,
               triggerOffset.width,
               messageElement.offsetWidth,
             ),
-          );
-          break;
+          ];
         case tooltipDirection.BOTTOM_RIGHT:
-          setTop(calcBottom(triggerOffset.top, triggerOffset.height));
-          setLeft(calcRight(triggerOffset.left, triggerOffset.width));
-          break;
+          return [
+            calcBottom(triggerOffset.top, triggerOffset.height),
+            calcRight(triggerOffset.left),
+          ];
         case tooltipDirection.TOP_CENTER:
-          setTop(calcTop(triggerOffset.top, messageElement.offsetHeight));
-          setLeft(
+          return [
+            calcTop(triggerOffset.top, messageElement.offsetHeight),
             calcCenter(
               triggerOffset.left,
               triggerOffset.width,
               messageElement.offsetWidth,
             ),
-          );
-          break;
+          ];
         case tooltipDirection.TOP_LEFT:
-          setTop(calcTop(triggerOffset.top, messageElement.offsetHeight));
-          setLeft(
+          return [
+            calcTop(triggerOffset.top, messageElement.offsetHeight),
             calcLeft(
               triggerOffset.left,
               triggerOffset.width,
               messageElement.offsetWidth,
             ),
-          );
-          break;
+          ];
         case tooltipDirection.TOP_RIGHT:
-          setTop(calcTop(triggerOffset.top, messageElement.offsetHeight));
-          setLeft(calcRight(triggerOffset.left, triggerOffset.width));
-          break;
+          return [
+            calcTop(triggerOffset.top, messageElement.offsetHeight),
+            calcRight(triggerOffset.left),
+          ];
         default:
-          break;
+          return [-9999, -9999];
       }
     }
 
-    return () => {
-      setTop(-9999);
-      setLeft(-9999);
-    };
-  }, [triggerOffset, direction]);
+    return [-9999, -9999];
+  }, [triggerOffset, direction, messageElementRef.current]);
 
   return (
     container &&
@@ -136,6 +166,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
         style={{ top, left }}
       >
         {typeof message === 'string' ? withNewline(message) : message}
+        <span className={styles['arrow']} />
       </div>,
       container,
     )
