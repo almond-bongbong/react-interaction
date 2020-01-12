@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode, useEffect, useMemo, useRef } from 'react';
+import { CSSProperties, ReactNode, useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { addRootElement } from '../../lib/generateElement';
 import styles from './TooltipMessage.style.css';
@@ -21,31 +21,14 @@ interface TooltipMessageProps {
 
 const containerId = 'tooltip-container';
 const ADJUSTMENT = 15;
-const tooltipDirection = {
-  TOP_LEFT: 'top-left',
-  TOP_CENTER: 'top-center',
-  TOP_RIGHT: 'top-right',
-  BOTTOM_LEFT: 'bottom-left',
-  BOTTOM_CENTER: 'bottom-center',
-  BOTTOM_RIGHT: 'bottom-right',
-};
 
-const { round } = Math;
 const calcTop = (triggerTop: number, messageHeight: number) =>
   triggerTop - messageHeight - ADJUSTMENT;
-const calcBottom = (triggerTop: number, triggerHeight: number) =>
-  triggerTop + triggerHeight + ADJUSTMENT;
-const calcCenter = (
-  triggerLeft: number,
-  triggerWidth: number,
-  messageWidth: number,
-) => round(triggerLeft - messageWidth / 2 + triggerWidth / 2);
 const calcLeft = (
   triggerLeft: number,
   triggerWidth: number,
   messageWidth: number,
-) => round(triggerLeft - (messageWidth - triggerWidth));
-const calcRight = (triggerLeft: number) => triggerLeft;
+) => Math.max(triggerLeft - (messageWidth - triggerWidth) / 2, ADJUSTMENT);
 
 const TooltipMessage: React.FC<TooltipMessageProps> = ({
   show,
@@ -69,7 +52,10 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
     };
   }, []);
 
-  const direction = useMemo(() => {
+  const {
+    tooltipStyle,
+    arrowStyle,
+  }: { tooltipStyle: CSSProperties; arrowStyle: CSSProperties } = useMemo(() => {
     const messageElement = messageElementRef.current;
 
     if (triggerOffset && messageElement && messageElement.offsetTop) {
@@ -81,81 +67,46 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       const rightEnd =
         Math.round(triggerLeft - messageWidth / 2 + triggerWidth / 2) +
         messageWidth;
-      const leftEnd = Math.round(
-        triggerLeft - messageWidth / 2 + triggerWidth / 2,
-      );
       const isOverRight = rightEnd + ADJUSTMENT > window.innerWidth;
-      const isOverLeft = leftEnd < 0;
-      const isOverTop = triggerTop - messageHeight - ADJUSTMENT < 0;
+      // const isOverTop = triggerTop - messageHeight - ADJUSTMENT < 0;
 
-      if (!isOverTop && isOverRight) return tooltipDirection.TOP_LEFT;
-      if (!isOverTop && isOverLeft) return tooltipDirection.TOP_RIGHT;
-      if (isOverTop) return tooltipDirection.BOTTOM_CENTER;
-      if (isOverRight && isOverTop) return tooltipDirection.BOTTOM_LEFT;
-      if (isOverLeft && isOverTop) return tooltipDirection.BOTTOM_RIGHT;
-    }
+      const messageRight = window.innerWidth - ADJUSTMENT;
+      const triggerRight = triggerLeft + triggerWidth;
 
-    return tooltipDirection.TOP_CENTER;
-  }, [triggerOffset, window.innerWidth]);
-
-  const [top, left] = useMemo(() => {
-    const messageElement = messageElementRef.current;
-
-    if (triggerOffset && messageElement) {
-      switch (direction) {
-        case tooltipDirection.BOTTOM_CENTER:
-          return [
-            calcBottom(triggerOffset.top, triggerOffset.height),
-            calcCenter(
-              triggerOffset.left,
-              triggerOffset.width,
-              messageElement.offsetWidth,
-            ),
-          ];
-        case tooltipDirection.BOTTOM_LEFT:
-          return [
-            calcBottom(triggerOffset.top, triggerOffset.height),
-            calcLeft(
-              triggerOffset.left,
-              triggerOffset.width,
-              messageElement.offsetWidth,
-            ),
-          ];
-        case tooltipDirection.BOTTOM_RIGHT:
-          return [
-            calcBottom(triggerOffset.top, triggerOffset.height),
-            calcRight(triggerOffset.left),
-          ];
-        case tooltipDirection.TOP_CENTER:
-          return [
-            calcTop(triggerOffset.top, messageElement.offsetHeight),
-            calcCenter(
-              triggerOffset.left,
-              triggerOffset.width,
-              messageElement.offsetWidth,
-            ),
-          ];
-        case tooltipDirection.TOP_LEFT:
-          return [
-            calcTop(triggerOffset.top, messageElement.offsetHeight),
-            calcLeft(
-              triggerOffset.left,
-              triggerOffset.width,
-              messageElement.offsetWidth,
-            ),
-          ];
-        case tooltipDirection.TOP_RIGHT:
-          return [
-            calcTop(triggerOffset.top, messageElement.offsetHeight),
-            calcRight(triggerOffset.left),
-          ];
-        default:
-          return [-9999, -9999];
+      if (isOverRight) {
+        return {
+          tooltipStyle: {
+            top: calcTop(triggerTop, messageHeight),
+            right: ADJUSTMENT,
+          },
+          arrowStyle: {
+            bottom: -5,
+            right: triggerOffset.width / 2 + (messageRight - triggerRight),
+            transform: 'translateX(50%)'
+          },
+        };
       }
+
+      const tooltipLeft = calcLeft(triggerLeft, triggerWidth, messageWidth);
+
+      return {
+        tooltipStyle: {
+          top: calcTop(triggerTop, messageHeight),
+          left: tooltipLeft,
+        },
+        arrowStyle: {
+          bottom: -5,
+          left: triggerOffset.width / 2 + triggerOffset.left - tooltipLeft,
+          transform: 'translateX(-50%)'
+        },
+      };
     }
 
-    return [-9999, -9999];
-  }, [triggerOffset, direction, messageElementRef.current]);
+    return {
+      tooltipStyle: { top: -9999, left: -9999 },
+      arrowStyle: { top: -9999, left: -9999 },
+    };
+  }, [triggerOffset, messageElementRef.current, window.innerWidth]);
 
   return (
     container &&
@@ -163,10 +114,10 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       <div
         ref={messageElementRef}
         className={`${styles['tooltip']} ${show ? styles['active'] : ''}`}
-        style={{ top, left }}
+        style={tooltipStyle}
       >
         {typeof message === 'string' ? withNewline(message) : message}
-        <span className={styles['arrow']} />
+        <span className={styles['arrow']} style={arrowStyle} />
       </div>,
       container,
     )

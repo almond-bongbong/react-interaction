@@ -381,12 +381,12 @@ export default myToast;
             </Tooltip>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Categories
-            <Tooltip message="Please select a category to be displayed\nin breadcrumbs">
+            <Tooltip message="Please select a category to be displayed\nin breadcrumbsin breadcrumbsin breadcrumbsin breadcrumbsin brin breadcrumbsin breadcrumbsin breadcrumbsin breadcrumbsin breadcrumbseadcrumbs">
               <span role="img" aria-label="tip">❗</span>
            ️</Tooltip>
             <Tooltip message="Basic tooltip Basic tooltip Basic tooltip Basic tooltip">
               <button type="button" className="example-button">
-                Basic tooltip
+                I
               </button>
             </Tooltip>
           </div>
