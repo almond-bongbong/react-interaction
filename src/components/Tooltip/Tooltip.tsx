@@ -39,6 +39,7 @@ const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
         show={show}
         message={message}
         triggerOffset={triggerOffset}
+        triggerElement={triggerElementRef.current}
       />
     </>
   );
