@@ -374,22 +374,26 @@ export default myToast;
           <h3>Basic usage</h3>
           <p>The location of the tooltip is calculated automatically.</p>
           <div className="playground">
-            <Tooltip message="Basic tooltip message basic tooltip message basic tooltip message basic tooltip message">
+            <Tooltip message="Basic tooltip message">
               <button type="button" className="example-button">
                 Basic tooltip
               </button>
             </Tooltip>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Categories
-            <Tooltip message="Please select a category to be displayed\nin breadcrumbsin breadcrumbsin breadcrumbsin breadcrumbsin brin breadcrumbsin breadcrumbsin breadcrumbsin breadcrumbsin breadcrumbseadcrumbs">
-              <span role="img" aria-label="tip">❗</span>
-           ️</Tooltip>
-            <Tooltip message="Basic tooltip Basic tooltip Basic tooltip Basic tooltip">
-              <button type="button" className="example-button">
-                I
-              </button>
-            </Tooltip>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Long description
+            <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+              <span role="img" aria-label="tip">💡</span>
+            ️</Tooltip>
           </div>
+          <CommonHighlighter>{`<Tooltip message="Basic tooltip message">
+  <button type="button" className="example-button">
+    Basic tooltip
+  </button>
+</Tooltip>`}</CommonHighlighter>
+          <CommonHighlighter>{`Long description
+<Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \\n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+  <span role="img" aria-label="tip">💡</span>
+️</Tooltip>`}</CommonHighlighter>
         </div>
       </div>
 

@@ -145,3 +145,8 @@ body .my-toast {
   color: #fff;
   font-size: 20px;
 }
+
+hr {
+  margin: 15px 0;
+  border-top: 1px dashed #fafafa;
+}

@@ -68,10 +68,10 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
 
   const {
     tooltipStyle,
-    arrowStyle,
+    tooltipArrowStyle,
   }: {
     tooltipStyle: CSSProperties;
-    arrowStyle: CSSProperties;
+    tooltipArrowStyle: CSSProperties;
   } = useMemo(() => {
     const messageElement = messageElementRef.current;
 
@@ -96,35 +96,38 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       const messageRight = window.innerWidth - ADJUSTMENT;
       const triggerRight = triggerLeft + triggerWidth;
       const tooltipLeft = calcLeft(triggerLeft, triggerWidth, messageWidth);
+      let tooltipCalculatedStyle: CSSProperties = {};
+      let tooltipArrowCalculatedStyle: CSSProperties = {};
+
+      if (isOverTop) {
+        tooltipCalculatedStyle.top = calcBottom(triggerTop, triggerHeight);
+        tooltipArrowCalculatedStyle = { top: -5, ...arrowTopStyle };
+      } else {
+        tooltipCalculatedStyle.top = calcTop(triggerTop, messageHeight);
+        tooltipArrowCalculatedStyle = { bottom: -5, ...arrowBottomStyle };
+      }
+
+      if (isOverRight) {
+        tooltipCalculatedStyle.right = ADJUSTMENT;
+        tooltipArrowCalculatedStyle.right =
+          triggerOffset.width / 2 + (messageRight - triggerRight);
+        tooltipArrowCalculatedStyle.transform = 'translateX(50%)';
+      } else {
+        tooltipCalculatedStyle.left = tooltipLeft;
+        tooltipArrowCalculatedStyle.left =
+          triggerOffset.width / 2 + triggerOffset.left - tooltipLeft;
+        tooltipArrowCalculatedStyle.transform = 'translateX(-50%)';
+      }
 
       return {
-        tooltipStyle: {
-          top: isOverTop
-            ? calcBottom(triggerTop, triggerHeight)
-            : calcTop(triggerTop, messageHeight),
-          ...(isOverRight ? { right: ADJUSTMENT } : { left: tooltipLeft }),
-        },
-        arrowStyle: {
-          ...(isOverTop
-            ? { top: -5, ...arrowTopStyle }
-            : { bottom: -5, ...arrowBottomStyle }),
-          ...(isOverRight
-            ? {
-                right: triggerOffset.width / 2 + (messageRight - triggerRight),
-                transform: 'translateX(50%)',
-              }
-            : {
-                left:
-                  triggerOffset.width / 2 + triggerOffset.left - tooltipLeft,
-                transform: 'translateX(-50%)',
-              }),
-        },
+        tooltipStyle: tooltipCalculatedStyle,
+        tooltipArrowStyle: tooltipArrowCalculatedStyle,
       };
     }
 
     return {
       tooltipStyle: { top: -9999, left: -9999 },
-      arrowStyle: { top: -9999, left: -9999 },
+      tooltipArrowStyle: { top: -9999, left: -9999 },
     };
   }, [
     triggerOffset,
@@ -142,7 +145,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
         style={tooltipStyle}
       >
         {typeof message === 'string' ? withNewline(message) : message}
-        <span className={styles['arrow']} style={arrowStyle} />
+        <span className={styles['arrow']} style={tooltipArrowStyle} />
       </div>,
       container,
     )
