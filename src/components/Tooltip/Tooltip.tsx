@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { ReactNode, useRef, useState } from 'react';
+import { CSSProperties, ReactNode, useRef, useState } from 'react';
 import TooltipMessage from '../TooltipMessage';
 import styles from './Tooltip.style.css';
 
 interface TooltipProps {
   message: ReactNode;
+  messageStyle?: CSSProperties;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
+const Tooltip: React.FC<TooltipProps> = ({
+  children,
+  message,
+  messageStyle,
+}) => {
   const [show, setShow] = useState<boolean>(false);
   const triggerElementRef = useRef<HTMLSpanElement>(null);
   const triggerOffset = triggerElementRef.current && {
@@ -38,6 +43,7 @@ const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
       <TooltipMessage
         show={show}
         message={message}
+        messageStyle={messageStyle}
         triggerOffset={triggerOffset}
         triggerElement={triggerElementRef.current}
       />

@@ -395,6 +395,23 @@ export default myToast;
   <span role="img" aria-label="tip">💡</span>
 ️</Tooltip>`}</CommonHighlighter>
         </div>
+
+        <div className="example-area">
+          <h3>Custom style</h3>
+          <p>The location of the tooltip is calculated automatically.</p>
+          <div className="playground">
+            <Tooltip message="Basic tooltip message" messageStyle={{ backgroundColor: '#fd8f93' }}>
+              <button type="button" className="example-button">
+                Custom style tooltip
+              </button>
+            </Tooltip>
+          </div>
+          <CommonHighlighter>{`<Tooltip message="Basic tooltip message">
+  <button type="button" className="example-button">
+    Basic tooltip
+  </button>
+</Tooltip>`}</CommonHighlighter>
+        </div>
       </div>
 
       <footer>

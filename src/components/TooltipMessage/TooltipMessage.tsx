@@ -16,17 +16,20 @@ interface TriggerOffset {
 interface TooltipMessageProps {
   show: boolean;
   message: ReactNode;
+  messageStyle?: CSSProperties;
   triggerOffset: TriggerOffset | null;
   triggerElement: HTMLElement | null;
 }
 
 const containerId = 'tooltip-container';
 const ADJUSTMENT = 15;
-const arrowBottomStyle: CSSProperties = {
+const getArrowBottomStyleWithColor = (
+  arrowColor: string = 'rgba(0, 0, 0, 0.8)',
+): CSSProperties => ({
   borderLeft: '5px solid transparent',
   borderRight: '5px solid transparent',
-  borderTop: '5px solid rgba(0, 0, 0, 0.8)',
-};
+  borderTop: `5px solid ${arrowColor}`,
+});
 const arrowTopStyle: CSSProperties = {
   borderLeft: '5px solid transparent',
   borderRight: '5px solid transparent',
@@ -46,6 +49,7 @@ const calcLeft = (
 const TooltipMessage: React.FC<TooltipMessageProps> = ({
   show,
   message,
+  messageStyle,
   triggerOffset,
   triggerElement,
 }) => {
@@ -81,6 +85,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       messageElement.offsetTop &&
       triggerElement
     ) {
+      const tooltipBackgroundColor = messageElement.style.backgroundColor;
       const messageWidth = messageElement.offsetWidth;
       const messageHeight = messageElement.offsetHeight;
       const triggerElementRect = triggerElement.getBoundingClientRect();
@@ -104,7 +109,10 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
         tooltipArrowCalculatedStyle = { top: -5, ...arrowTopStyle };
       } else {
         tooltipCalculatedStyle.top = calcTop(triggerTop, messageHeight);
-        tooltipArrowCalculatedStyle = { bottom: -5, ...arrowBottomStyle };
+        tooltipArrowCalculatedStyle = {
+          bottom: -5,
+          ...getArrowBottomStyleWithColor(tooltipBackgroundColor),
+        };
       }
 
       if (isOverRight) {
@@ -142,10 +150,15 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       <div
         ref={messageElementRef}
         className={`${styles['tooltip']} ${show ? styles['active'] : ''}`}
-        style={tooltipStyle}
+        style={{ ...tooltipStyle, ...messageStyle }}
       >
         {typeof message === 'string' ? withNewline(message) : message}
-        <span className={styles['arrow']} style={tooltipArrowStyle} />
+        <span
+          className={styles['arrow']}
+          style={{
+            ...tooltipArrowStyle,
+          }}
+        />
       </div>,
       container,
     )
