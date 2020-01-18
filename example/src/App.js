@@ -14,6 +14,7 @@ export default function App() {
               <a href="#toast">Toast</a>
               <a href="#notice">Notice</a>
               <a href="#check">Check</a>
+              <a href="#tooltip">Tooltip</a>
             </div>
           </div>
         </header>
