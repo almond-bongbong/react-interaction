@@ -17,6 +17,7 @@ interface TooltipMessageProps {
   show: boolean;
   message: ReactNode;
   messageStyle?: CSSProperties;
+  messageClassName?: string;
   triggerOffset: TriggerOffset | null;
   triggerElement: HTMLElement | null;
 }
@@ -50,6 +51,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   show,
   message,
   messageStyle,
+  messageClassName = '',
   triggerOffset,
   triggerElement,
 }) => {
@@ -149,7 +151,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
     createPortal(
       <div
         ref={messageElementRef}
-        className={`${styles['tooltip']} ${show ? styles['active'] : ''}`}
+        className={`${styles['tooltip']} ${messageClassName} ${show ? styles['active'] : ''}`}
         style={{ ...tooltipStyle, ...messageStyle }}
       >
         {typeof message === 'string' ? withNewline(message) : message}

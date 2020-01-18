@@ -6,12 +6,14 @@ import styles from './Tooltip.style.css';
 interface TooltipProps {
   message: ReactNode;
   messageStyle?: CSSProperties;
+  messageClassName?: string;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   children,
   message,
   messageStyle,
+  messageClassName,
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const triggerElementRef = useRef<HTMLSpanElement>(null);
@@ -44,6 +46,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         show={show}
         message={message}
         messageStyle={messageStyle}
+        messageClassName={messageClassName}
         triggerOffset={triggerOffset}
         triggerElement={triggerElementRef.current}
       />

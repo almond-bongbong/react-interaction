@@ -6,10 +6,10 @@
 
 ## Components
 
-- [x] toast popup
-- [x] notice
-- [ ] check
-- [ ] tooltip
+- Toast popup
+- Notice
+- Check
+- Tooltip
 
 ## Install
 
@@ -17,11 +17,43 @@
 npm install --save react-interaction
 ```
 
+## [Live demo](https://www.naver.com)
+
 ## Documents
 
-### [Live demo](https://www.naver.com)
+### Toast
 
-...
+```
+toast(message, options)
+```
+
+#### options
+
+| Name         | Type    | Default | Description |
+| ------------ | ------- | ------- | ----------- |
+| time | number | `3000` | The millisecond time that the message is displayed. |
+| className | string | '' | |
+| style | CSSProperties | | |
+
+### Notice
+
+```
+notice(message, options).then(() => console.log('closed'));
+```
+
+#### options
+
+| Name         | Type    | Default | Description |
+| ------------ | ------- | ------- | ----------- |
+| dimmedClassName | string |  |  |
+| dimmedStyle | CSSProperties |  | |
+| contentClassName | string | | |
+| contentStyle | CSSProperties | | |
+| messageClassName | string | | |
+| messageStyle | CSSProperties | | |
+| okClassName | string | | |
+| okStyle | CSSProperties | | |
+| okText | string | 'OK' | |
 
 ## License
 

@@ -401,15 +401,23 @@ export default myToast;
           <h3>Custom style</h3>
           <p>The location of the tooltip is calculated automatically.</p>
           <div className="playground">
-            <Tooltip message="Basic tooltip message" messageStyle={{ backgroundColor: '#fd8f93' }}>
+            <Tooltip
+              message="My custom tooltip"
+              messageStyle={{ backgroundColor: 'rgba(253, 143, 147, 0.9)', fontSize: 16 }}
+              messageClassName="my-tooltip-message"
+            >
               <button type="button" className="example-button">
                 Custom style tooltip
               </button>
             </Tooltip>
           </div>
-          <CommonHighlighter>{`<Tooltip message="Basic tooltip message">
+          <CommonHighlighter>{`<Tooltip
+  message="My custom tooltip"
+  messageStyle={{ backgroundColor: 'rgba(253, 143, 147, 0.9)' }}
+  messageClassName="my-tooltip-message"
+>
   <button type="button" className="example-button">
-    Basic tooltip
+    Custom style tooltip
   </button>
 </Tooltip>`}</CommonHighlighter>
         </div>
