@@ -115,8 +115,7 @@ export default function App() {
   background-color: rgba(255, 115, 122, 0.8);
   color: #fff;
   font-size: 20px;
-}
-`}
+}`}
           </CommonHighlighter>
           <CommonHighlighter>
             {`<button
@@ -152,8 +151,7 @@ const myToast = () => {
   });
 };
 
-export default myToast;
-`}
+export default myToast;`}
           </CommonHighlighter>
           <CommonHighlighter>
             {`<button
@@ -208,8 +206,7 @@ export default myToast;
                   },
                   contentClassName: 'my-notice-content',
                   contentStyle: {
-                    width: 400,
-                    backgroundColor: '#666'
+                    backgroundColor: 'rgba(253, 143, 147, 0.8)'
                   },
                   messageClassName: 'my-notice-message',
                   messageStyle: {
@@ -218,11 +215,11 @@ export default myToast;
                   },
                   okClassName: 'my-notice-ok',
                   okStyle: {
-                    border: 'none',
-                    backgroundColor: '#818388',
+                    border: '1px solid rgba(255, 255, 255, 0.4)',
+                    backgroundColor: 'transparent',
                     color: '#fff'
                   },
-                  okText: 'Close',
+                  okText: 'Yes',
                 })
               }
             >
@@ -233,40 +230,40 @@ export default myToast;
             {`<button
   type="button"
   className="example-button"
-  onClick={() => notice('This is a notice message', {
-    dimmedClassName: 'my-notice-dimmed',
-    contentClassName: 'my-notice-content',
-    messageClassName: 'my-notice-message',
-    okClassName: 'my-notice-ok',
-    dimmedStyle: {
-      background: 'none'
-    },
-    contentStyle: {
-      width: 400,
-      backgroundColor: '#666'
-    },
-    messageStyle: {
-      color: '#fff',
-      fontSize: 20,
-    },
-    okStyle: {
-      border: 'none',
-      backgroundColor: '#818388',
-      color: '#fff'
-    },
-    okText: 'Close',
-  })}
+  onClick={() =>
+    notice('This is a notice message', {
+      dimmedClassName: 'my-notice-dimmed',
+      dimmedStyle: {
+        background: 'none'
+      },
+      contentClassName: 'my-notice-content',
+      contentStyle: {
+        backgroundColor: 'rgba(253, 143, 147, 0.8)'
+      },
+      messageClassName: 'my-notice-message',
+      messageStyle: {
+        color: '#fff',
+        fontSize: 20,
+      },
+      okClassName: 'my-notice-ok',
+      okStyle: {
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        backgroundColor: 'transparent',
+        color: '#fff'
+      },
+      okText: 'Yes',
+    })
+  }
 >
   Notice
-</button>
-`}
+</button>`}
           </CommonHighlighter>
         </div>
 
         <h2 id="check">Check</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
-          <p>The result is true or false in a Promise.</p>
+          <p>Check returns Promise&lt;boolean&gt;</p>
           <div className="playground">
             <button
               type="button"
@@ -281,8 +278,7 @@ export default myToast;
   check('Are you sure?').then(console.log);
 }}>
   Basic notice
-</button>
-`}
+</button>`}
           </CommonHighlighter>
         </div>
 
@@ -300,8 +296,7 @@ export default myToast;
                   },
                   contentClassName: 'my-check-content',
                   contentStyle: {
-                    width: 400,
-                    backgroundColor: '#666'
+                    backgroundColor: 'rgba(253, 143, 147, 0.8)'
                   },
                   messageClassName: 'my-check-message',
                   messageStyle: {
@@ -310,15 +305,15 @@ export default myToast;
                   },
                   okClassName: 'my-check-ok',
                   okStyle: {
-                    border: 'none',
-                    backgroundColor: '#fafafa',
-                    color: '#333'
+                    border: '1px solid rgba(255, 255, 255, 0.4)',
+                    backgroundColor: 'transparent',
+                    color: '#fff'
                   },
                   okText: 'Yes',
                   cancelClassName: 'my-check-cancel',
                   cancelStyle: {
-                    border: 'none',
-                    backgroundColor: '#999',
+                    border: '1px solid rgba(255, 255, 255, 0.4)',
+                    backgroundColor: 'transparent',
                     color: '#fff'
                   },
                   cancelText: 'No',
@@ -330,42 +325,41 @@ export default myToast;
           </div>
           <CommonHighlighter>
             {`<button
-  type="button"
-  className="example-button"
-  onClick={() =>
-    check('Are you sure?', {
-      dimmedClassName: 'my-check-dimmed',
-      dimmedStyle: {
-        background: 'none'
-      },
-      contentClassName: 'my-check-content',
-      contentStyle: {
-        width: 400,
-        backgroundColor: '#666'
-      },
-      messageClassName: 'my-check-message',
-      messageStyle: {
-        color: '#fff',
-        fontSize: 20,
-      },
-      okClassName: 'my-check-ok',
-      okStyle: {
-        border: 'none',
-        backgroundColor: '#fafafa',
-        color: '#333'
-      },
-      okText: 'Yes',
-      cancelClassName: 'my-check-cancel',
-      cancelStyle: {
-        border: 'none',
-        backgroundColor: '#999',
-        color: '#fff'
-      },
-      cancelText: 'No',
-    }).then(console.log)
-  }
+type="button"
+className="example-button"
+onClick={() =>
+  check('Are you sure?', {
+    dimmedClassName: 'my-check-dimmed',
+    dimmedStyle: {
+      background: 'none'
+    },
+    contentClassName: 'my-check-content',
+    contentStyle: {
+      backgroundColor: 'rgba(253, 143, 147, 0.8)'
+    },
+    messageClassName: 'my-check-message',
+    messageStyle: {
+      color: '#fff',
+      fontSize: 20,
+    },
+    okClassName: 'my-check-ok',
+    okStyle: {
+      border: '1px solid rgba(255, 255, 255, 0.4)',
+      backgroundColor: 'transparent',
+      color: '#fff'
+    },
+    okText: 'Yes',
+    cancelClassName: 'my-check-cancel',
+    cancelStyle: {
+      border: '1px solid rgba(255, 255, 255, 0.4)',
+      backgroundColor: 'transparent',
+      color: '#fff'
+    },
+    cancelText: 'No',
+  }).then(console.log)
+}
 >
-  Check
+Check
 </button>`}
           </CommonHighlighter>
         </div>

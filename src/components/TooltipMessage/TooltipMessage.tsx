@@ -87,7 +87,9 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       messageElement.offsetTop &&
       triggerElement
     ) {
-      const tooltipBackgroundColor = messageElement.style.backgroundColor;
+      const tooltipBackgroundColor = window
+        .getComputedStyle(messageElement, null)
+        .getPropertyValue('background-color');
       const messageWidth = messageElement.offsetWidth;
       const messageHeight = messageElement.offsetHeight;
       const triggerElementRect = triggerElement.getBoundingClientRect();
@@ -151,7 +153,9 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
     createPortal(
       <div
         ref={messageElementRef}
-        className={`${styles['tooltip']} ${messageClassName} ${show ? styles['active'] : ''}`}
+        className={`${styles['tooltip']} ${messageClassName} ${
+          show ? styles['active'] : ''
+        }`}
         style={{ ...tooltipStyle, ...messageStyle }}
       >
         {typeof message === 'string' ? withNewline(message) : message}

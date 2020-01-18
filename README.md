@@ -17,31 +17,30 @@
 npm install --save react-interaction
 ```
 
-## [Live demo](https://www.naver.com)
+## [Live demo](https://almond-bongbong.github.io/react-interaction)
 
-## Documents
-
-### Toast
+## Toast
 
 ```
 toast(message, options)
 ```
 
-#### options
+### options
 
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
 | time | number | `3000` | The millisecond time that the message is displayed. |
-| className | string | '' | |
+| className | string | | |
 | style | CSSProperties | | |
 
-### Notice
+
+## Notice
 
 ```
 notice(message, options).then(() => console.log('closed'));
 ```
 
-#### options
+### options
 
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
@@ -53,7 +52,47 @@ notice(message, options).then(() => console.log('closed'));
 | messageStyle | CSSProperties | | |
 | okClassName | string | | |
 | okStyle | CSSProperties | | |
-| okText | string | 'OK' | |
+| okText | string | `'OK'` | |
+
+
+## Check
+
+return `Promise<boolean>`
+
+```
+check(message, options).then(isConfirmed => console.log(isConfirmed));
+```
+
+### options
+
+| Name         | Type    | Default | Description |
+| ------------ | ------- | ------- | ----------- |
+| dimmedClassName | string |  |  |
+| dimmedStyle | CSSProperties |  | |
+| contentClassName | string | | |
+| contentStyle | CSSProperties | | |
+| messageClassName | string | | |
+| messageStyle | CSSProperties | | |
+| okClassName | string | | |
+| okStyle | CSSProperties | | |
+| okText | string | `'OK'` | |
+| cancelClassName | string | | |
+| cancelStyle | CSSProperties | | |
+| cancelText | string | `'Cancel'` | |
+
+## Tooltip
+
+```
+<Tooltip message="Tooltip message">tooltip</Tooltip>
+```
+
+### props
+
+| Name         | Type    | Default | Description |
+| ------------ | ------- | ------- | ----------- |
+| message | ReactNode |  |  |
+| messageStyle | CSSProperties |  | |
+| messageClassName | string | | |
 
 ## License
 
