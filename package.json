@@ -1,6 +1,6 @@
 {
   "name": "react-interaction",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Collection of components for interaction",
   "author": "almond-bongbong",
   "license": "MIT",
@@ -56,5 +56,14 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component",
+    "toast",
+    "alert",
+    "confirm",
+    "tooltip"
   ]
 }
