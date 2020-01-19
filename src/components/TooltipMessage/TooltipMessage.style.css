@@ -8,8 +8,10 @@
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
-  word-break: break-all;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
+  word-break: break-all;
   transition: visibility 0.3s, opacity 0.3s;
 }
 

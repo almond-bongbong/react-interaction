@@ -6,8 +6,10 @@
   bottom: 0;
   left: 0;
   z-index: 10000;
-  background-color: rgba(0,0,0,0.2);
-  transition: opacity .2s;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  transition: opacity 0.2s;
 }
 
 .dialog.active {
@@ -23,7 +25,7 @@
   padding: 35px 30px 30px 35px;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 1px 6px 3px rgba(100,100,100,0.2);
+  box-shadow: 0 1px 6px 3px rgba(100, 100, 100, 0.2);
   transform: translate(-50%, -50%);
 }
 
@@ -53,7 +55,7 @@
   font-size: 15px;
   font-family: inherit;
   cursor: pointer;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
 .dialog-button-ok {
@@ -71,5 +73,3 @@
 .dialog-button-cancel:active {
   box-shadow: none;
 }
-
-
