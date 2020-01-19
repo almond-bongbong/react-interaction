@@ -4,7 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/react-interaction.svg)](https://www.npmjs.com/package/react-interaction) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-**📢 Waning! Currently, this module operates on react 16.8 or later.**
+**📢 Waning! Currently, this module supports React 16.8 and later.**
 
 ## Components
 
