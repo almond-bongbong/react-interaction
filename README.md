@@ -8,6 +8,7 @@
 
 ## Components
 
+
 - Toast popup
 - Notice
 - Check
@@ -15,13 +16,16 @@
 
 ## Install
 
+
 ```bash
 npm install --save react-interaction
 ```
 
 ## [Live demo](https://almond-bongbong.github.io/react-interaction)
 
+
 ## Toast
+
 
 ```
 toast(message, options)
@@ -82,6 +86,7 @@ check(message, options).then(isConfirmed => console.log(isConfirmed));
 | cancelStyle | CSSProperties | | |
 | cancelText | string | `'Cancel'` | |
 
+
 ## Tooltip
 
 ```
@@ -95,6 +100,7 @@ check(message, options).then(isConfirmed => console.log(isConfirmed));
 | message | ReactNode |  |  |
 | messageStyle | CSSProperties |  | |
 | messageClassName | string | | |
+
 
 ## License
 
