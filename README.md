@@ -19,7 +19,7 @@
 npm install --save react-interaction
 ```
 
-**[Live demo](https://almond-bongbong.github.io/react-interaction)**
+**[Example](https://almond-bongbong.github.io/react-interaction)**
 
 ## Toast
 
