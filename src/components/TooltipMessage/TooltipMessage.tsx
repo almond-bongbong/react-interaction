@@ -31,11 +31,13 @@ const getArrowBottomStyleWithColor = (
   borderRight: '5px solid transparent',
   borderTop: `5px solid ${arrowColor}`,
 });
-const arrowTopStyle: CSSProperties = {
+const getArrowTopStyleWithColor = (
+  arrowColor: string = 'rgba(0, 0, 0, 0.8)',
+): CSSProperties => ({
   borderLeft: '5px solid transparent',
   borderRight: '5px solid transparent',
-  borderBottom: '5px solid rgba(0, 0, 0, 0.8)',
-};
+  borderBottom: `5px solid ${arrowColor}`,
+});
 
 const calcTop = (triggerTop: number, messageHeight: number) =>
   triggerTop - messageHeight - ADJUSTMENT;
@@ -110,7 +112,10 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
 
       if (isOverTop) {
         tooltipCalculatedStyle.top = calcBottom(triggerTop, triggerHeight);
-        tooltipArrowCalculatedStyle = { top: -5, ...arrowTopStyle };
+        tooltipArrowCalculatedStyle = {
+          top: -5,
+          ...getArrowTopStyleWithColor(tooltipBackgroundColor),
+        };
       } else {
         tooltipCalculatedStyle.top = calcTop(triggerTop, messageHeight);
         tooltipArrowCalculatedStyle = {

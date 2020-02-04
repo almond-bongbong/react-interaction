@@ -29,7 +29,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   };
 
   const handleOut = () => {
-    setShow(false);
+    setShow(true);
   };
 
   return (
