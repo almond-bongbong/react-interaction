@@ -19,17 +19,7 @@
   display: block;
   position: absolute;
   width: 10px;
-  height: 5px;
-  overflow: hidden;
-}
-
-.arrow:after {
-  content: '';
-  display: block;
-  width: 10px;
   height: 10px;
-  background-color: inherit;
-  transform: rotate(45deg);
 }
 
 .active {
