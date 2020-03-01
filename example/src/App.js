@@ -45,14 +45,14 @@ export default function App() {
               type="button"
               className="example-button"
               onClick={() =>
-                toast('Message shown for 1 seconds.', { time: 1000 })
+                toast('Message shown for 5 seconds.', { time: 5000 })
               }
             >
-              for 1 seconds
+              for 5 seconds
             </button>
           </div>
           <CommonHighlighter>
-            {`<button type="button" onClick={() => toast('Message shown for 1 seconds.', { time: 1000 })}>
+            {`<button type="button" onClick={() => toast('Message shown for 5 seconds.', { time: 5000 })}>
   for 1 seconds
 </button>`}
           </CommonHighlighter>
@@ -66,31 +66,31 @@ export default function App() {
               type="button"
               className="example-button"
               onClick={() =>
-                toast('My custom toast', {
+                toast('Toast message here', {
                   style: {
-                    borderRadius: 0,
-                    backgroundColor: '#fff',
-                    color: '#8fc5fd',
+                    borderRadius: 5,
+                    backgroundColor: '#fafafa',
+                    color: '#666',
                   },
                 })
               }
             >
-              My custom toast
+              toast
             </button>
           </div>
           <CommonHighlighter>
             {`<button
   type="button"
   className="example-button"
-  onClick={() => toast('My custom toast', {
+  onClick={() => toast('Toast message here', {
     style: {
-      borderRadius: 0,
-      backgroundColor: '#fff',
-      color: '#8fc5fd',
+      borderRadius: 5,
+      backgroundColor: '#fafafa',
+      color: '#666',
     }
   })}
 >
-  My custom toast
+  toast
 </button>`}
           </CommonHighlighter>
         </div>
@@ -102,18 +102,19 @@ export default function App() {
               type="button"
               className="example-button"
               onClick={() =>
-                toast('My custom toast', {
+                toast('Toast message here', {
                   className: 'my-toast',
                 })
               }
             >
-              My custom toast
+              toast
             </button>
           </div>
           <CommonHighlighter language="css">
             {`body .my-toast {
-  background-color: rgba(255, 115, 122, 0.8);
+  background-color: rgba(50, 130, 184, 0.8);
   color: #fff;
+  border-radius: 8px;
   font-size: 20px;
 }`}
           </CommonHighlighter>
@@ -124,7 +125,7 @@ export default function App() {
     className: 'my-toast',
   })}
 >
-  My custom toast
+  toast
 </button>`}
           </CommonHighlighter>
         </div>
@@ -136,9 +137,9 @@ export default function App() {
             <button
               type="button"
               className="example-button"
-              onClick={() => myToast('Default settings toast')}
+              onClick={() => myToast('Toast message here')}
             >
-              Default settings toast
+              toast
             </button>
           </div>
           <CommonHighlighter>
@@ -146,7 +147,7 @@ export default function App() {
 
 const myToast = () => {
   toast(message, {
-    time: 1000,
+    time: 5000,
     className: 'my-toast',
   });
 };
@@ -156,9 +157,9 @@ export default myToast;`}
           <CommonHighlighter>
             {`<button
   type="button"
-  onClick={() => myToast('Default settings toast')}
+  onClick={() => myToast('Toast message here')}
 >
-  Default settings toast
+  toast
 </button>
 `}
           </CommonHighlighter>
@@ -172,7 +173,7 @@ export default myToast;`}
               type="button"
               className="example-button"
               onClick={() =>
-                notice('This is a notice message').then(() =>
+                notice('Congrats!\nYour upload successfully done').then(() =>
                   console.log('closed'),
                 )
               }
@@ -184,7 +185,7 @@ export default myToast;`}
             {`<button
   type="button"
   className="example-button"
-  onClick={() => notice('This is a notice message').then(() => console.log('closed'))}
+  onClick={() => notice('Congrats! Your upload successfully done').then(() => console.log('closed'))}
 >
   Basic notice
 </button>

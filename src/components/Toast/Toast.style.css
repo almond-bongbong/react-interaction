@@ -24,7 +24,7 @@
 }
 .toast-message {
   opacity: 0;
-  margin-bottom: 10px;
+  margin-bottom: 13px;
   font-size: 0;
   transition: height 0.3s, opacity 0.3s, transform 0.3s;
 }
@@ -32,14 +32,14 @@
   display: inline-block;
   overflow: hidden;
   min-width: 290px;
-  padding: 12px 22px;
+  padding: 14px 25px;
   background: rgba(0, 0, 10, 0.8);
   box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.2);
   border-radius: 40px;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
   line-height: 1.5;
 }

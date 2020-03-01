@@ -2,7 +2,7 @@ import { toast } from 'react-interaction';
 
 const myToast = (message) => {
   toast(message, {
-    time: 1000,
+    time: 5000,
     className: 'my-toast',
   });
 };

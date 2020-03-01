@@ -7,9 +7,10 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #fefefe;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  color: #666;
+  color: #444;
   line-height: 1.5;
 }
 
@@ -28,7 +29,7 @@ header {
   background-color: #fff;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
   font-size: 20px;
-  color: #ee6e73;
+  color: #282c35;
 }
 
 header .header-content {
@@ -116,7 +117,7 @@ p {
   border: 0;
   border-radius: 4px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
-  background-color: #fd8f93;
+  background-color: #282c35;
   color: #fff;
   font-size: 16px;
   text-align: center;
@@ -125,7 +126,7 @@ p {
 }
 
 .example-button:active {
-  background-color: #ff7479;
+  background-color: #383d4a;
 }
 
 .example-button + .example-button {
@@ -141,8 +142,9 @@ p {
 }
 
 body .my-toast {
-  background-color: rgba(255, 115, 122, 0.8);
+  background-color: rgba(50, 130, 184, 0.8);
   color: #fff;
+  border-radius: 8px;
   font-size: 20px;
 }
 

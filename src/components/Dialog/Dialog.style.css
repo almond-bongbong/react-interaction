@@ -18,58 +18,56 @@
 
 .dialog-content {
   position: absolute;
+  overflow: hidden;
   top: 50%;
   left: 50%;
   width: 340px;
   max-width: 90%;
-  padding: 35px 30px 30px 35px;
   background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 1px 6px 3px rgba(100, 100, 100, 0.2);
+  border-radius: 12px;
+  box-shadow: 2px 5px 10px 1px rgba(100, 100, 100, 0.2);
+  text-align: center;
   transform: translate(-50%, -50%);
 }
 
 .dialog-message {
-  margin-bottom: 35px;
+  padding: 40px 30px;
+  background-color: #fafafa;
   color: #666;
   font-size: 18px;
   word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .dialog-button-wrap {
-  text-align: right;
-}
-
-.dialog-button-wrap > button + button {
-  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 .dialog-button-ok,
 .dialog-button-cancel {
-  display: inline-block;
-  min-width: 75px;
-  padding: 10px 12px;
-  border-radius: 2px;
+  display: block;
+  flex: 1;
+  padding: 20px 5px;
   border: 0;
   outline: 0;
+  background-color: #fff;
   font-size: 15px;
   font-family: inherit;
+  font-weight: 600;
   cursor: pointer;
   transition: opacity 0.3s;
 }
 
 .dialog-button-ok {
-  border: 0;
-  background-color: #62a5f7;
-  color: #fff;
+  color: #333;
 }
 
 .dialog-button-cancel {
-  background-color: #eee;
-  color: #aaa;
+  color: #888;
 }
 
-.dialog-button-ok:active,
-.dialog-button-cancel:active {
-  box-shadow: none;
+.dialog-button-ok:hover,
+.dialog-button-cancel:hover {
+  background-color: #fefefe;
 }
