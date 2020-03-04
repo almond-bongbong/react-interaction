@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { toast, notice, check, Tooltip } from 'react-interaction';
 import CommonHighlighter from './CommonHighlighter';
-import myToast from './custom/myToast';
 
 export default function App() {
   return (
@@ -130,41 +129,6 @@ export default function App() {
           </CommonHighlighter>
         </div>
 
-        <div className="example-area">
-          <h3>Use default settings</h3>
-          <p>Can be used by mapping.</p>
-          <div className="playground">
-            <button
-              type="button"
-              className="example-button"
-              onClick={() => myToast('Toast message here')}
-            >
-              toast
-            </button>
-          </div>
-          <CommonHighlighter>
-            {`import { toast } from 'react-interaction';
-
-const myToast = () => {
-  toast(message, {
-    time: 5000,
-    className: 'my-toast',
-  });
-};
-
-export default myToast;`}
-          </CommonHighlighter>
-          <CommonHighlighter>
-            {`<button
-  type="button"
-  onClick={() => myToast('Toast message here')}
->
-  toast
-</button>
-`}
-          </CommonHighlighter>
-        </div>
-
         <h2 id="notice">Notice</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
@@ -178,16 +142,16 @@ export default myToast;`}
                 )
               }
             >
-              Basic notice
+              notice
             </button>
           </div>
           <CommonHighlighter>
             {`<button
   type="button"
   className="example-button"
-  onClick={() => notice('Congrats! Your upload successfully done').then(() => console.log('closed'))}
+  onClick={() => notice('Congrats!\nYour upload successfully done').then(() => console.log('closed'))}
 >
-  Basic notice
+  notice
 </button>
 `}
           </CommonHighlighter>
@@ -200,31 +164,31 @@ export default myToast;`}
               type="button"
               className="example-button"
               onClick={() =>
-                notice('This is a notice message', {
+                notice('Congrats!\nYour upload successfully done', {
                   dimmedClassName: 'my-notice-dimmed',
                   dimmedStyle: {
                     background: 'none'
                   },
                   contentClassName: 'my-notice-content',
                   contentStyle: {
-                    backgroundColor: 'rgba(253, 143, 147, 0.8)'
+                    width: 400,
                   },
                   messageClassName: 'my-notice-message',
                   messageStyle: {
-                    color: '#fff',
+                    padding: '50px 10px',
                     fontSize: 20,
                   },
                   okClassName: 'my-notice-ok',
                   okStyle: {
-                    border: '1px solid rgba(255, 255, 255, 0.4)',
-                    backgroundColor: 'transparent',
+                    backgroundColor: '#3282B8',
+                    fontSize: 18,
                     color: '#fff'
                   },
                   okText: 'Yes',
                 })
               }
             >
-              Notice
+              notice
             </button>
           </div>
           <CommonHighlighter>
