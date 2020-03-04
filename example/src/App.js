@@ -180,7 +180,7 @@ export default function App() {
                   },
                   okClassName: 'my-notice-ok',
                   okStyle: {
-                    backgroundColor: '#3282B8',
+                    backgroundColor: '#3282b8',
                     fontSize: 18,
                     color: '#fff'
                   },
@@ -196,31 +196,31 @@ export default function App() {
   type="button"
   className="example-button"
   onClick={() =>
-    notice('This is a notice message', {
+    notice('Congrats!\\nYour upload successfully done', {
       dimmedClassName: 'my-notice-dimmed',
       dimmedStyle: {
         background: 'none'
       },
       contentClassName: 'my-notice-content',
       contentStyle: {
-        backgroundColor: 'rgba(253, 143, 147, 0.8)'
+        width: 400,
       },
       messageClassName: 'my-notice-message',
       messageStyle: {
-        color: '#fff',
+        padding: '50px 10px',
         fontSize: 20,
       },
       okClassName: 'my-notice-ok',
       okStyle: {
-        border: '1px solid rgba(255, 255, 255, 0.4)',
-        backgroundColor: 'transparent',
+        backgroundColor: '#3282b8',
+        fontSize: 18,
         color: '#fff'
       },
       okText: 'Yes',
     })
   }
 >
-  Notice
+  notice
 </button>`}
           </CommonHighlighter>
         </div>
@@ -233,16 +233,18 @@ export default function App() {
             <button
               type="button"
               className="example-button"
-              onClick={() => check('Are you sure?').then(console.log)}
+              onClick={() => check('Are you sure\nyou want to delete this contact?').then(console.log)}
             >
-              Basic check
+              check
             </button>
           </div>
           <CommonHighlighter>
-            {`<button type="button" onClick={() => {
-  check('Are you sure?').then(console.log);
-}}>
-  Basic notice
+            {`<button
+  type="button"
+  className="example-button"
+  onClick={() => check('Are you sure\\nyou want to delete this contact?').then(console.log)}
+>
+  check
 </button>`}
           </CommonHighlighter>
         </div>
@@ -254,77 +256,73 @@ export default function App() {
               type="button"
               className="example-button"
               onClick={() =>
-                check('Are you sure?', {
+                check('Are you sure\nyou want to delete this contact?', {
                   dimmedClassName: 'my-check-dimmed',
                   dimmedStyle: {
-                    background: 'none'
+                    background: 'transparent'
                   },
                   contentClassName: 'my-check-content',
                   contentStyle: {
-                    backgroundColor: 'rgba(253, 143, 147, 0.8)'
+                    width: 400,
                   },
                   messageClassName: 'my-check-message',
                   messageStyle: {
-                    color: '#fff',
+                    backgroundColor: '#fff',
                     fontSize: 20,
                   },
                   okClassName: 'my-check-ok',
                   okStyle: {
-                    border: '1px solid rgba(255, 255, 255, 0.4)',
-                    backgroundColor: 'transparent',
+                    backgroundColor: '#3282b8',
                     color: '#fff'
                   },
                   okText: 'Yes',
                   cancelClassName: 'my-check-cancel',
                   cancelStyle: {
-                    border: '1px solid rgba(255, 255, 255, 0.4)',
-                    backgroundColor: 'transparent',
-                    color: '#fff'
+                    backgroundColor: '#ccc',
+                    color: '#fff',
                   },
                   cancelText: 'No',
                 }).then(console.log)
               }
             >
-              Check
+              check
             </button>
           </div>
           <CommonHighlighter>
             {`<button
-type="button"
-className="example-button"
-onClick={() =>
-  check('Are you sure?', {
-    dimmedClassName: 'my-check-dimmed',
-    dimmedStyle: {
-      background: 'none'
-    },
-    contentClassName: 'my-check-content',
-    contentStyle: {
-      backgroundColor: 'rgba(253, 143, 147, 0.8)'
-    },
-    messageClassName: 'my-check-message',
-    messageStyle: {
-      color: '#fff',
-      fontSize: 20,
-    },
-    okClassName: 'my-check-ok',
-    okStyle: {
-      border: '1px solid rgba(255, 255, 255, 0.4)',
-      backgroundColor: 'transparent',
-      color: '#fff'
-    },
-    okText: 'Yes',
-    cancelClassName: 'my-check-cancel',
-    cancelStyle: {
-      border: '1px solid rgba(255, 255, 255, 0.4)',
-      backgroundColor: 'transparent',
-      color: '#fff'
-    },
-    cancelText: 'No',
-  }).then(console.log)
-}
+  type="button"
+  className="example-button"
+  onClick={() =>
+    check('Are you sure\\nyou want to delete this contact?', {
+      dimmedClassName: 'my-check-dimmed',
+      dimmedStyle: {
+        background: 'transparent'
+      },
+      contentClassName: 'my-check-content',
+      contentStyle: {
+        width: 400,
+      },
+      messageClassName: 'my-check-message',
+      messageStyle: {
+        backgroundColor: '#fff',
+        fontSize: 20,
+      },
+      okClassName: 'my-check-ok',
+      okStyle: {
+        backgroundColor: '#3282b8',
+        color: '#fff'
+      },
+      okText: 'Yes',
+      cancelClassName: 'my-check-cancel',
+      cancelStyle: {
+        backgroundColor: '#ccc',
+        color: '#fff',
+      },
+      cancelText: 'No',
+    }).then(console.log)
+  }
 >
-Check
+  check
 </button>`}
           </CommonHighlighter>
         </div>
@@ -345,7 +343,8 @@ Check
               <span role="img" aria-label="tip">💡</span>
             ️</Tooltip>
           </div>
-          <CommonHighlighter>{`<Tooltip message="Basic tooltip message">
+          <CommonHighlighter>
+            {`<Tooltip message="Basic tooltip message">
   <button type="button" className="example-button">
     Basic tooltip
   </button>
@@ -353,7 +352,8 @@ Check
           <CommonHighlighter>{`Long description
 <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \\n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
   <span role="img" aria-label="tip">💡</span>
-️</Tooltip>`}</CommonHighlighter>
+️</Tooltip>`}
+          </CommonHighlighter>
         </div>
 
         <div className="example-area">
@@ -362,7 +362,7 @@ Check
           <div className="playground">
             <Tooltip
               message="My custom tooltip"
-              messageStyle={{ backgroundColor: 'rgba(253, 143, 147, 0.9)', fontSize: 16 }}
+              messageStyle={{ backgroundColor: 'rgba(50, 130, 184, 0.9)', fontSize: 16 }}
               messageClassName="my-tooltip-message"
             >
               <button type="button" className="example-button">
@@ -370,15 +370,17 @@ Check
               </button>
             </Tooltip>
           </div>
-          <CommonHighlighter>{`<Tooltip
+          <CommonHighlighter>
+            {`<Tooltip
   message="My custom tooltip"
-  messageStyle={{ backgroundColor: 'rgba(253, 143, 147, 0.9)' }}
+  messageStyle={{ backgroundColor: 'rgba(50, 130, 184, 0.9)', fontSize: 16 }}
   messageClassName="my-tooltip-message"
 >
   <button type="button" className="example-button">
     Custom style tooltip
   </button>
-</Tooltip>`}</CommonHighlighter>
+</Tooltip>`}
+          </CommonHighlighter>
         </div>
       </div>
 
