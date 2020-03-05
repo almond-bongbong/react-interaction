@@ -341,7 +341,7 @@ export default function App() {
             magic
             <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
               <span role="img" aria-label="tip">💡</span>
-            ️</Tooltip>
+           ️</Tooltip>
           </div>
           <CommonHighlighter>
             {`<Tooltip message="Basic tooltip message">
@@ -349,7 +349,8 @@ export default function App() {
     tooltip
   </button>
 </Tooltip>`}</CommonHighlighter>
-          <CommonHighlighter>{`Long description
+          <CommonHighlighter>
+            {`magic
 <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \\n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
   <span role="img" aria-label="tip">💡</span>
 ️</Tooltip>`}
@@ -381,6 +382,23 @@ export default function App() {
   </button>
 </Tooltip>`}
           </CommonHighlighter>
+        </div>
+
+        <div className="example-area">
+          <h3>Toggle type</h3>
+          <div className="playground">
+            <Tooltip message="Basic tooltip message" toggle>
+              <button type="button" className="example-button">
+                tooltip
+              </button>
+            </Tooltip>
+          </div>
+          <CommonHighlighter>
+            {`<Tooltip message="Basic tooltip message">
+  <button type="button" className="example-button">
+    tooltip
+  </button>
+</Tooltip>`}</CommonHighlighter>
         </div>
       </div>
 

@@ -7,6 +7,7 @@ interface TooltipProps {
   message: ReactNode;
   messageStyle?: CSSProperties;
   messageClassName?: string;
+  toggle: boolean;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -14,6 +15,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   message,
   messageStyle,
   messageClassName,
+  toggle = false,
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const triggerElementRef = useRef<HTMLSpanElement>(null);
@@ -32,13 +34,23 @@ const Tooltip: React.FC<TooltipProps> = ({
     setShow(false);
   };
 
+  const handleToggle = () => {
+    setShow(prev => !prev);
+  };
+
+  const handleBlur = () => {
+    setShow(false);
+  };
+
   return (
     <>
       <span
         ref={triggerElementRef}
-        onMouseOver={handleOver}
-        onMouseOut={handleOut}
         className={styles['tooltip-trigger']}
+        {...toggle
+          ? { onClick: handleToggle, onBlur: handleBlur }
+          : { onMouseOver: handleOver, onMouseOut: handleOut }
+        }
       >
         {children}
       </span>
