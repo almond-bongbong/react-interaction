@@ -334,11 +334,11 @@ export default function App() {
           <div className="playground">
             <Tooltip message="Basic tooltip message">
               <button type="button" className="example-button">
-                Basic tooltip
+                tooltip
               </button>
             </Tooltip>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Long description
+            magic
             <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
               <span role="img" aria-label="tip">💡</span>
             ️</Tooltip>
@@ -346,7 +346,7 @@ export default function App() {
           <CommonHighlighter>
             {`<Tooltip message="Basic tooltip message">
   <button type="button" className="example-button">
-    Basic tooltip
+    tooltip
   </button>
 </Tooltip>`}</CommonHighlighter>
           <CommonHighlighter>{`Long description
@@ -358,7 +358,7 @@ export default function App() {
 
         <div className="example-area">
           <h3>Custom style</h3>
-          <p>The location of the tooltip is calculated automatically.</p>
+          <p>The position of the tooltip is calculated automatically.</p>
           <div className="playground">
             <Tooltip
               message="My custom tooltip"
@@ -366,7 +366,7 @@ export default function App() {
               messageClassName="my-tooltip-message"
             >
               <button type="button" className="example-button">
-                Custom style tooltip
+                tooltip
               </button>
             </Tooltip>
           </div>
@@ -377,7 +377,7 @@ export default function App() {
   messageClassName="my-tooltip-message"
 >
   <button type="button" className="example-button">
-    Custom style tooltip
+    tooltip
   </button>
 </Tooltip>`}
           </CommonHighlighter>
