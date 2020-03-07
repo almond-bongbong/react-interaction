@@ -394,11 +394,12 @@ export default function App() {
             </Tooltip>
           </div>
           <CommonHighlighter>
-            {`<Tooltip message="Basic tooltip message">
+            {`<Tooltip message="Basic tooltip message" toggle>
   <button type="button" className="example-button">
     tooltip
   </button>
-</Tooltip>`}</CommonHighlighter>
+</Tooltip>`}
+          </CommonHighlighter>
         </div>
       </div>
 

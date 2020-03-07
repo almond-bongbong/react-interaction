@@ -96,6 +96,7 @@ check(message, options).then(isConfirmed => console.log(isConfirmed));
 | message | ReactNode |  |  |
 | messageStyle | CSSProperties |  | |
 | messageClassName | string | | |
+| toggle | boolean | false | |
 
 
 ## License
