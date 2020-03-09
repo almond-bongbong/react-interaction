@@ -6,18 +6,16 @@
 
 **📢️ Please check it. Currently, this module supports React 16.8 and later.**
 
-<p align="center">
-<kbd width="40%">
-<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760204/github/react-interaction-toast_wit5on.gif"/>
-</kbd>
-&nbsp;&nbsp;&nbsp;
-<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760206/github/react-interaction-alert_ebv2kd.gif" width="40%"/>
-</p>
-<p align="center">
-<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760203/github/react-interaction-check_owjlpx.gif" width="40%"/>
-&nbsp;&nbsp;&nbsp;
-<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760203/github/react-interaction-tooltip_qr7ezi.gif" width="40%"/>
-</p>
+<table>
+<tr>
+<td><img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760204/github/react-interaction-toast_wit5on.gif" /></td>
+<td><img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760206/github/react-interaction-alert_ebv2kd.gif" /></td>
+</tr>
+<tr>
+<td><img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760203/github/react-interaction-check_owjlpx.gif" /></td>
+<td><img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760203/github/react-interaction-tooltip_qr7ezi.gif" /></td>
+</tr>
+</table>
 
 ## Components
 
