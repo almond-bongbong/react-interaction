@@ -7,7 +7,7 @@
 **📢️ Please check it. Currently, this module supports React 16.8 and later.**
 
 <p align="center">
-<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760204/github/react-interaction-toast_wit5on.gif" width="40%"/>
+<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760204/github/react-interaction-toast_wit5on.gif" width="40%" style="border: 1px solid #ffff00;"/>
 &nbsp;&nbsp;&nbsp;
 <img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760206/github/react-interaction-alert_ebv2kd.gif" width="40%"/>
 </p>
