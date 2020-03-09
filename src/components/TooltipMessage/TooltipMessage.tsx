@@ -113,13 +113,13 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       if (isOverTop) {
         tooltipCalculatedStyle.top = calcBottom(triggerTop, triggerHeight);
         tooltipArrowCalculatedStyle = {
-          top: -10,
+          top: -5,
           ...getArrowTopStyleWithColor(tooltipBackgroundColor),
         };
       } else {
         tooltipCalculatedStyle.top = calcTop(triggerTop, messageHeight);
         tooltipArrowCalculatedStyle = {
-          bottom: -10,
+          bottom: -5,
           ...getArrowBottomStyleWithColor(tooltipBackgroundColor),
         };
       }

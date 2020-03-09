@@ -6,6 +6,17 @@
 
 **📢️ Please check it. Currently, this module supports React 16.8 and later.**
 
+<p align="center">
+<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760204/github/react-interaction-toast_wit5on.gif" width="40%"/>
+&nbsp;&nbsp;&nbsp;
+<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760206/github/react-interaction-alert_ebv2kd.gif" width="40%"/>
+</p>
+<p align="center">
+<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760203/github/react-interaction-check_owjlpx.gif" width="40%"/>
+&nbsp;&nbsp;&nbsp;
+<img src="https://res.cloudinary.com/dfyuv19ig/image/upload/v1583760203/github/react-interaction-tooltip_qr7ezi.gif" width="40%"/>
+</p>
+
 ## Components
 
 - Toast popup
@@ -13,13 +24,14 @@
 - Check
 - Tooltip
 
+## Demo
+[Example](https://almond-bongbong.github.io/react-interaction)
+
 ## Install
 
 ```bash
 npm install --save react-interaction
 ```
-
-**[Example](https://almond-bongbong.github.io/react-interaction)**
 
 ## Toast
 
