@@ -330,7 +330,7 @@ export default function App() {
         <h2 id="tooltip">Tooltip</h2>
         <div className="example-area">
           <h3>Basic usage</h3>
-          <p>The location of the tooltip is calculated automatically.</p>
+          <p>Position of the tooltip is calculated automatically.</p>
           <div className="playground">
             <Tooltip message="Basic tooltip message">
               <button type="button" className="example-button">
