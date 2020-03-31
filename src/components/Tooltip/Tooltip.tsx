@@ -7,7 +7,7 @@ interface TooltipProps {
   message: ReactNode;
   messageStyle?: CSSProperties;
   messageClassName?: string;
-  toggle: boolean;
+  toggle?: boolean;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -19,11 +19,12 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const triggerElementRef = useRef<HTMLSpanElement>(null);
-  const triggerOffset = triggerElementRef.current && {
-    top: triggerElementRef.current.offsetTop,
-    left: triggerElementRef.current.offsetLeft,
-    width: triggerElementRef.current.offsetWidth,
-    height: triggerElementRef.current.offsetHeight,
+  const triggerRect = triggerElementRef.current && triggerElementRef.current.getBoundingClientRect();
+  const triggerOffset = triggerRect && {
+    top: triggerRect.top + window.pageYOffset,
+    left: triggerRect.left + window.pageXOffset,
+    width: triggerRect.width,
+    height: triggerRect.height,
   };
 
   const handleOver = () => {

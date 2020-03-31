@@ -331,7 +331,7 @@ export default function App() {
         <div className="example-area">
           <h3>Basic usage</h3>
           <p>Position of the tooltip is calculated automatically.</p>
-          <div className="playground">
+          <div className="playground" style={{ position: 'relative' }}>
             <Tooltip message="Basic tooltip message">
               <button type="button" className="example-button">
                 tooltip
