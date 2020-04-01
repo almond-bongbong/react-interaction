@@ -19,13 +19,6 @@ const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const [show, setShow] = useState<boolean>(false);
   const triggerElementRef = useRef<HTMLSpanElement>(null);
-  const triggerRect = triggerElementRef.current && triggerElementRef.current.getBoundingClientRect();
-  const triggerOffset = triggerRect && {
-    top: triggerRect.top + window.pageYOffset,
-    left: triggerRect.left + window.pageXOffset,
-    width: triggerRect.width,
-    height: triggerRect.height,
-  };
 
   const handleOver = () => {
     setShow(true);
@@ -60,7 +53,6 @@ const Tooltip: React.FC<TooltipProps> = ({
         message={message}
         messageStyle={messageStyle}
         messageClassName={messageClassName}
-        triggerOffset={triggerOffset}
         triggerElement={triggerElementRef.current}
       />
     </>

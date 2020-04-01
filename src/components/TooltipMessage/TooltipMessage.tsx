@@ -5,20 +5,14 @@ import { addRootElement } from '../../lib/generateElement';
 import styles from './TooltipMessage.style.css';
 import { withNewline } from '../../lib/ReactStringUtil';
 import useForceUpdate from '../../hooks/useForceUpdate';
-
-interface TriggerOffset {
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-}
+import { hasWindow } from '../../lib/browser';
+import { EventHandler } from '../../lib/EventHandler';
 
 interface TooltipMessageProps {
   show: boolean;
   message: ReactNode;
   messageStyle?: CSSProperties;
   messageClassName?: string;
-  triggerOffset: TriggerOffset | null;
   triggerElement: HTMLElement | null;
 }
 
@@ -54,23 +48,23 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   message,
   messageStyle,
   messageClassName = '',
-  triggerOffset,
   triggerElement,
 }) => {
-  let container: HTMLElement | null = document.getElementById(containerId);
+  let container: HTMLElement | null = hasWindow() ? document.getElementById(containerId) : null;
   const messageElementRef = useRef<HTMLDivElement>(null);
   const forceUpdate = useForceUpdate();
 
   if (!container) {
     addRootElement(containerId);
-    container = document.getElementById(containerId);
+    container = hasWindow() ? document.getElementById(containerId) : null;
   }
 
   useEffect(() => {
-    window.addEventListener('resize', forceUpdate);
+
+    if (hasWindow()) EventHandler.addEventListener('resize.tooltip', forceUpdate);
 
     return () => {
-      window.removeEventListener('resize', forceUpdate);
+      if (hasWindow()) EventHandler.removeEventListener('resize.tooltip');
     };
   }, []);
 
@@ -83,18 +77,19 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   } = useMemo(() => {
     const messageElement = messageElementRef.current;
 
-    if (
-      triggerOffset &&
-      messageElement &&
-      messageElement.offsetTop &&
-      triggerElement
-    ) {
+    if (hasWindow() && messageElement && messageElement.offsetTop && triggerElement) {
       const tooltipBackgroundColor = window
         .getComputedStyle(messageElement, null)
         .getPropertyValue('background-color');
       const messageWidth = messageElement.offsetWidth;
       const messageHeight = messageElement.offsetHeight;
       const triggerElementRect = triggerElement.getBoundingClientRect();
+      const triggerOffset = triggerElementRect && {
+        top: triggerElementRect.top + window.pageYOffset,
+        left: triggerElementRect.left + window.pageXOffset,
+        width: triggerElementRect.width,
+        height: triggerElementRect.height,
+      };
       const triggerTop = triggerOffset.top;
       const triggerLeft = triggerOffset.left;
       const triggerWidth = triggerOffset.width;
@@ -146,12 +141,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       tooltipStyle: { top: -9999, left: -9999 },
       tooltipArrowStyle: { top: -9999, left: -9999 },
     };
-  }, [
-    triggerOffset,
-    messageElementRef.current,
-    window.innerWidth,
-    triggerElement,
-  ]);
+  }, [messageElementRef.current, triggerElement]);
 
   return (
     container &&
