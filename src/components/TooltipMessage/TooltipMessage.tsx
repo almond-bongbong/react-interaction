@@ -50,13 +50,13 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   messageClassName = '',
   triggerElement,
 }) => {
-  let container: HTMLElement | null = hasWindow() ? document.getElementById(containerId) : null;
+  let container: HTMLElement | null = document ? document.getElementById(containerId) : null;
   const messageElementRef = useRef<HTMLDivElement>(null);
   const forceUpdate = useForceUpdate();
 
   if (!container) {
     addRootElement(containerId);
-    container = hasWindow() ? document.getElementById(containerId) : null;
+    container = document ? document.getElementById(containerId) : null;
   }
 
   useEffect(() => {
