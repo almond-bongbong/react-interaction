@@ -56,11 +56,10 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
 
   if (!container) {
     addRootElement(containerId);
-    container = document ? document.getElementById(containerId) : null;
+    container = hasWindow() ? document.getElementById(containerId) : null;
   }
 
   useEffect(() => {
-
     if (hasWindow()) EventHandler.addEventListener('resize.tooltip', forceUpdate);
 
     return () => {
