@@ -6,7 +6,9 @@ import styles from './Tooltip.style.css';
 interface TooltipProps {
   message: ReactNode;
   messageStyle?: CSSProperties;
+  triggerStyle?: CSSProperties;
   messageClassName?: string;
+  triggerClassName?: string;
   toggle?: boolean;
 }
 
@@ -14,7 +16,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   children,
   message,
   messageStyle,
+  triggerStyle,
   messageClassName,
+  triggerClassName,
   toggle = false,
 }) => {
   const [show, setShow] = useState<boolean>(false);
@@ -40,11 +44,11 @@ const Tooltip: React.FC<TooltipProps> = ({
     <>
       <span
         ref={triggerElementRef}
-        className={styles['tooltip-trigger']}
-        {...toggle
+        className={`${styles['tooltip-trigger']} ${triggerClassName || ''}`}
+        style={triggerStyle}
+        {...(toggle
           ? { onClick: handleToggle, onBlur: handleBlur }
-          : { onMouseOver: handleOver, onMouseOut: handleOut }
-        }
+          : { onMouseOver: handleOver, onMouseOut: handleOut })}
       >
         {children}
       </span>

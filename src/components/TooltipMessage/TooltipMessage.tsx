@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { CSSProperties, ReactNode, useEffect, useMemo, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import { addRootElement } from '../../lib/generateElement';
 import styles from './TooltipMessage.style.css';
 import { withNewline } from '../../lib/ReactStringUtil';
 import useForceUpdate from '../../hooks/useForceUpdate';
 import { hasWindow } from '../../lib/browser';
 import { EventHandler } from '../../lib/EventHandler';
+import Portal from '../Portal';
 
 interface TooltipMessageProps {
   show: boolean;
@@ -50,7 +50,9 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   messageClassName = '',
   triggerElement,
 }) => {
-  let container: HTMLElement | null = hasWindow() ? document.getElementById(containerId) : null;
+  let container: HTMLElement | null = hasWindow()
+    ? document.getElementById(containerId)
+    : null;
   const messageElementRef = useRef<HTMLDivElement>(null);
   const forceUpdate = useForceUpdate();
 
@@ -60,7 +62,8 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   }
 
   useEffect(() => {
-    if (hasWindow()) EventHandler.addEventListener('resize.tooltip', forceUpdate);
+    if (hasWindow())
+      EventHandler.addEventListener('resize.tooltip', forceUpdate);
 
     return () => {
       if (hasWindow()) EventHandler.removeEventListener('resize.tooltip');
@@ -76,7 +79,12 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   } = useMemo(() => {
     const messageElement = messageElementRef.current;
 
-    if (hasWindow() && messageElement && messageElement.offsetTop && triggerElement) {
+    if (
+      hasWindow() &&
+      messageElement &&
+      messageElement.offsetTop &&
+      triggerElement
+    ) {
       const tooltipBackgroundColor = window
         .getComputedStyle(messageElement, null)
         .getPropertyValue('background-color');
@@ -140,27 +148,27 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       tooltipStyle: { top: -9999, left: -9999 },
       tooltipArrowStyle: { top: -9999, left: -9999 },
     };
-  }, [messageElementRef.current, triggerElement]);
+  }, [messageElementRef.current, triggerElement, show]);
 
   return (
-    container &&
-    createPortal(
-      <div
-        ref={messageElementRef}
-        className={`${styles['tooltip']} ${messageClassName} ${
-          show ? styles['active'] : ''
-        }`}
-        style={{ ...tooltipStyle, ...messageStyle }}
-      >
-        {typeof message === 'string' ? withNewline(message) : message}
-        <span
-          className={styles['arrow']}
-          style={{
-            ...tooltipArrowStyle,
-          }}
-        />
-      </div>,
-      container,
+    container && (
+      <Portal selector={`#${containerId}`}>
+        <div
+          ref={messageElementRef}
+          className={`${styles['tooltip']} ${messageClassName} ${
+            show ? styles['active'] : ''
+          }`}
+          style={{ ...tooltipStyle, ...messageStyle }}
+        >
+          {typeof message === 'string' ? withNewline(message) : message}
+          <span
+            className={styles['arrow']}
+            style={{
+              ...tooltipArrowStyle,
+            }}
+          />
+        </div>
+      </Portal>
     )
   );
 };

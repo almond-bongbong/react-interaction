@@ -1,3 +1,4 @@
 .tooltip-trigger {
+  display: inline-block;
   cursor: pointer;
 }
