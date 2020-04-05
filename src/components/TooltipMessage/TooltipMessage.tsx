@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { CSSProperties, ReactNode, useEffect, useMemo, useRef } from 'react';
+import {
+  CSSProperties,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { addRootElement } from '../../lib/generateElement';
 import styles from './TooltipMessage.style.css';
 import { withNewline } from '../../lib/ReactStringUtil';
@@ -9,11 +16,12 @@ import { EventHandler } from '../../lib/EventHandler';
 import Portal from '../Portal';
 
 interface TooltipMessageProps {
-  show: boolean;
+  triggerOn: boolean;
   message: ReactNode;
   messageStyle?: CSSProperties;
   messageClassName?: string;
   triggerElement: HTMLElement | null;
+  onExited: () => void;
 }
 
 const containerId = 'tooltip-container';
@@ -44,22 +52,28 @@ const calcLeft = (
 ) => Math.max(triggerLeft - (messageWidth - triggerWidth) / 2, ADJUSTMENT);
 
 const TooltipMessage: React.FC<TooltipMessageProps> = ({
-  show,
+  triggerOn,
   message,
   messageStyle,
   messageClassName = '',
   triggerElement,
+  onExited,
 }) => {
-  let container: HTMLElement | null = hasWindow()
-    ? document.getElementById(containerId)
-    : null;
   const messageElementRef = useRef<HTMLDivElement>(null);
   const forceUpdate = useForceUpdate();
+  const [tooltipStyle, setTooltipStyle] = useState<CSSProperties | null>(null);
+  const [
+    tooltipArrowStyle,
+    setTooltipArrowStyle,
+  ] = useState<CSSProperties | null>(null);
 
-  if (!container) {
+  if (hasWindow() && !document.getElementById(containerId)) {
     addRootElement(containerId);
-    container = hasWindow() ? document.getElementById(containerId) : null;
   }
+
+  const handleTransitionEnd = () => {
+    if (!triggerOn) onExited();
+  };
 
   useEffect(() => {
     if (hasWindow())
@@ -70,13 +84,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
     };
   }, []);
 
-  const {
-    tooltipStyle,
-    tooltipArrowStyle,
-  }: {
-    tooltipStyle: CSSProperties;
-    tooltipArrowStyle: CSSProperties;
-  } = useMemo(() => {
+  useLayoutEffect(() => {
     const messageElement = messageElementRef.current;
 
     if (
@@ -110,7 +118,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
       const triggerRight = triggerLeft + triggerWidth;
       const tooltipLeft = calcLeft(triggerLeft, triggerWidth, messageWidth);
       let tooltipCalculatedStyle: CSSProperties = {};
-      let tooltipArrowCalculatedStyle: CSSProperties = {};
+      let tooltipArrowCalculatedStyle: CSSProperties;
 
       if (isOverTop) {
         tooltipCalculatedStyle.top = calcBottom(triggerTop, triggerHeight);
@@ -138,38 +146,33 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
         tooltipArrowCalculatedStyle.transform = 'translateX(-50%)';
       }
 
-      return {
-        tooltipStyle: tooltipCalculatedStyle,
-        tooltipArrowStyle: tooltipArrowCalculatedStyle,
-      };
+      setTooltipStyle(tooltipCalculatedStyle);
+      setTooltipArrowStyle(tooltipArrowCalculatedStyle);
+    } else {
+      setTooltipStyle({ top: -9999, left: -9999 });
+      setTooltipArrowStyle({ top: -9999, left: -9999 });
     }
-
-    return {
-      tooltipStyle: { top: -9999, left: -9999 },
-      tooltipArrowStyle: { top: -9999, left: -9999 },
-    };
-  }, [messageElementRef.current, triggerElement, show]);
+  }, [messageElementRef.current, triggerElement, triggerOn]);
 
   return (
-    container && (
-      <Portal selector={`#${containerId}`}>
-        <div
-          ref={messageElementRef}
-          className={`${styles['tooltip']} ${messageClassName} ${
-            show ? styles['active'] : ''
-          }`}
-          style={{ ...tooltipStyle, ...messageStyle }}
-        >
-          {typeof message === 'string' ? withNewline(message) : message}
-          <span
-            className={styles['arrow']}
-            style={{
-              ...tooltipArrowStyle,
-            }}
-          />
-        </div>
-      </Portal>
-    )
+    <Portal selector={`#${containerId}`}>
+      <div
+        ref={messageElementRef}
+        className={`${styles['tooltip']} ${messageClassName || ''} ${
+          triggerOn ? styles['active'] : ''
+        }`}
+        style={{ ...tooltipStyle, ...messageStyle }}
+        onTransitionEnd={handleTransitionEnd}
+      >
+        {typeof message === 'string' ? withNewline(message) : message}
+        <span
+          className={styles['arrow']}
+          style={{
+            ...tooltipArrowStyle,
+          }}
+        />
+      </div>
+    </Portal>
   );
 };
 

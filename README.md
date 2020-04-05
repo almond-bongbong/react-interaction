@@ -105,11 +105,11 @@ check(message, options).then(isConfirmed => console.log(isConfirmed));
 
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
+| style | CSSProperties |  | |
+| className | string | | |
 | message | ReactNode |  |  |
 | messageStyle | CSSProperties |  | |
-| triggerStyle | CSSProperties |  | |
 | messageClassName | string | | |
-| triggerClassName | string | | |
 | toggle | boolean | false | |
 
 

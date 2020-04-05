@@ -5,38 +5,47 @@ import styles from './Tooltip.style.css';
 
 interface TooltipProps {
   message: ReactNode;
+  style?: CSSProperties;
   messageStyle?: CSSProperties;
-  triggerStyle?: CSSProperties;
+  className?: string;
   messageClassName?: string;
-  triggerClassName?: string;
   toggle?: boolean;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   children,
+  style,
+  className,
   message,
   messageStyle,
-  triggerStyle,
   messageClassName,
-  triggerClassName,
   toggle = false,
 }) => {
+  const [triggerOn, setTriggerOn] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
   const triggerElementRef = useRef<HTMLSpanElement>(null);
 
   const handleOver = () => {
     setShow(true);
+    setTriggerOn(true);
   };
 
   const handleOut = () => {
-    setShow(false);
+    setTriggerOn(false);
   };
 
   const handleToggle = () => {
-    setShow(prev => !prev);
+    if (!triggerOn) {
+      setShow(true);
+    }
+    setTriggerOn(prev => !prev);
   };
 
   const handleBlur = () => {
+    setTriggerOn(false);
+  };
+
+  const handleHide = () => {
     setShow(false);
   };
 
@@ -44,21 +53,24 @@ const Tooltip: React.FC<TooltipProps> = ({
     <>
       <span
         ref={triggerElementRef}
-        className={`${styles['tooltip-trigger']} ${triggerClassName || ''}`}
-        style={triggerStyle}
+        className={`${styles['tooltip-trigger']} ${className || ''}`}
+        style={style}
         {...(toggle
           ? { onClick: handleToggle, onBlur: handleBlur }
           : { onMouseOver: handleOver, onMouseOut: handleOut })}
       >
         {children}
       </span>
-      <TooltipMessage
-        show={show}
-        message={message}
-        messageStyle={messageStyle}
-        messageClassName={messageClassName}
-        triggerElement={triggerElementRef.current}
-      />
+      {show && (
+        <TooltipMessage
+          triggerOn={triggerOn}
+          message={message}
+          messageStyle={messageStyle}
+          messageClassName={messageClassName}
+          triggerElement={triggerElementRef.current}
+          onExited={handleHide}
+        />
+      )}
     </>
   );
 };

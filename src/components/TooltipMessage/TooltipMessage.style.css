@@ -13,7 +13,19 @@
   font-size: 14px;
   pointer-events: none;
   word-break: break-all;
+  animation: fadeIn 0.3s;
   transition: visibility 0.3s, opacity 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .arrow {
