@@ -13,27 +13,18 @@
   font-size: 14px;
   pointer-events: none;
   word-break: break-all;
-  animation: fadeIn 0.3s;
   transition: visibility 0.3s, opacity 0.3s;
 }
 
-@keyframes fadeIn {
-  from {
-    visibility: hidden;
-    opacity: 0;
-  }
-  to {
-    visibility: visible;
-    opacity: 1;
-  }
+.tooltip:global(.appear-active),
+.tooltip:global(.appear-done),
+.tooltip:global(.enter-active),
+.tooltip:global(.enter-done) {
+  visibility: visible;
+  opacity: 1;
 }
 
 .arrow {
   display: block;
   position: absolute;
-}
-
-.active {
-  visibility: visible;
-  opacity: 1;
 }

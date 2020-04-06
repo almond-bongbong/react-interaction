@@ -14,6 +14,7 @@ import useForceUpdate from '../../hooks/useForceUpdate';
 import { hasWindow } from '../../lib/browser';
 import { EventHandler } from '../../lib/EventHandler';
 import Portal from '../Portal';
+import { CSSTransition } from 'react-transition-group';
 
 interface TooltipMessageProps {
   triggerOn: boolean;
@@ -71,7 +72,7 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
     addRootElement(containerId);
   }
 
-  const handleTransitionEnd = () => {
+  const handleExited = () => {
     if (!triggerOn) onExited();
   };
 
@@ -156,22 +157,21 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
 
   return (
     <Portal selector={`#${containerId}`}>
-      <div
-        ref={messageElementRef}
-        className={`${styles['tooltip']} ${messageClassName || ''} ${
-          triggerOn ? styles['active'] : ''
-        }`}
-        style={{ ...tooltipStyle, ...messageStyle }}
-        onTransitionEnd={handleTransitionEnd}
-      >
-        {typeof message === 'string' ? withNewline(message) : message}
-        <span
-          className={styles['arrow']}
-          style={{
-            ...tooltipArrowStyle,
-          }}
-        />
-      </div>
+      <CSSTransition timeout={300} in={triggerOn} appear onExited={handleExited}>
+        <div
+          ref={messageElementRef}
+          className={`${styles['tooltip']} ${messageClassName || ''}`}
+          style={{ ...tooltipStyle, ...messageStyle }}
+        >
+          {typeof message === 'string' ? withNewline(message) : message}
+          <span
+            className={styles['arrow']}
+            style={{
+              ...tooltipArrowStyle,
+            }}
+          />
+        </div>
+      </CSSTransition>
     </Portal>
   );
 };
