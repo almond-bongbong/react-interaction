@@ -130,6 +130,7 @@ export default function App() {
         </div>
 
         <h2 id="notice">Notice</h2>
+        <p>Notice returns Promise</p>
         <div className="example-area">
           <h3>Basic usage</h3>
           <div className="playground">
@@ -226,9 +227,9 @@ export default function App() {
         </div>
 
         <h2 id="check">Check</h2>
+        <p>Check returns Promise&lt;boolean&gt;</p>
         <div className="example-area">
           <h3>Basic usage</h3>
-          <p>Check returns Promise&lt;boolean&gt;</p>
           <div className="playground">
             <button
               type="button"
@@ -328,9 +329,9 @@ export default function App() {
         </div>
 
         <h2 id="tooltip">Tooltip</h2>
+        <p>The position of the tooltip is calculated automatically.</p>
         <div className="example-area">
           <h3>Basic usage</h3>
-          <p>Position of the tooltip is calculated automatically.</p>
           <div className="playground" style={{ position: 'relative' }}>
             Magic tooltip message
             <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
@@ -347,7 +348,6 @@ export default function App() {
 
         <div className="example-area">
           <h3>Custom style</h3>
-          <p>The position of the tooltip is calculated automatically.</p>
           <div className="playground">
             Magic tooltip message
             <Tooltip

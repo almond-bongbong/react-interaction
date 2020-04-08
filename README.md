@@ -50,6 +50,8 @@ toast(message, options)
 
 ## Notice
 
+Promise based notice component such as alert
+
 ```
 notice(message, options).then(() => console.log('closed'));
 ```
@@ -71,7 +73,7 @@ notice(message, options).then(() => console.log('closed'));
 
 ## Check
 
-return `Promise<boolean>`
+Promise based check component such as confirm
 
 ```
 check(message, options).then(isConfirmed => console.log(isConfirmed));
@@ -96,6 +98,8 @@ check(message, options).then(isConfirmed => console.log(isConfirmed));
 
 
 ## Tooltip
+
+The position of the tooltip is calculated automatically.
 
 ```
 <Tooltip message="Tooltip message">tooltip</Tooltip>
