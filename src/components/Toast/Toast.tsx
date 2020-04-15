@@ -81,7 +81,7 @@ const Toast: React.FunctionComponent<ToastProps> = ({
   );
 };
 
-const toast = (message: string | ReactNode, options: ToastOptions) => {
+const toast = (message: string | ReactNode, options?: ToastOptions) => {
   init();
 
   const mergedOptions = { ...defaultOptions, ...options };
