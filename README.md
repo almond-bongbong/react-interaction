@@ -32,6 +32,11 @@
 ```bash
 npm install --save react-interaction
 ```
+## Usage
+
+```bash
+import { toast, notice, check, Tooltip } from 'react-interaction';
+```
 
 ## Toast
 
