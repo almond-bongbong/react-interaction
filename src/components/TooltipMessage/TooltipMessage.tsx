@@ -21,7 +21,7 @@ interface TooltipMessageProps {
   message: ReactNode;
   messageStyle?: CSSProperties;
   messageClassName?: string;
-  triggerElement: HTMLElement | null;
+  triggerElement: Element | null;
   onExited: () => void;
 }
 

@@ -333,39 +333,42 @@ export default function App() {
         <div className="example-area">
           <h3>Basic usage</h3>
           <div className="playground" style={{ position: 'relative' }}>
-            Magic tooltip message
             <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
-              <span role="img" aria-label="tip">💡</span>
+              <button type="button" className="example-button">
+                Magic tooltip message
+              </button>
            ️</Tooltip>
           </div>
           <CommonHighlighter>
-            {`Magic tooltip message
-<Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \\n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
-  <span role="img" aria-label="tip">💡</span>
+            {`<Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. \\n Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+  <button type="button" className="example-button">
+    Magic tooltip message
+  </button>
 ️</Tooltip>`}
           </CommonHighlighter>
         </div>
-
         <div className="example-area">
           <h3>Custom style</h3>
           <div className="playground">
-            Magic tooltip message
             <Tooltip
               message="My custom tooltip"
               messageStyle={{ backgroundColor: 'rgba(50, 130, 184, 0.9)', fontSize: 16 }}
               messageClassName="my-tooltip-message"
             >
-              <span role="img" aria-label="tip">💡</span>
+              <button type="button" className="example-button">
+                Magic tooltip message
+              </button>
             </Tooltip>
           </div>
           <CommonHighlighter>
-            {`Magic tooltip message
-<Tooltip
+            {`<Tooltip
   message="My custom tooltip"
   messageStyle={{ backgroundColor: 'rgba(50, 130, 184, 0.9)', fontSize: 16 }}
   messageClassName="my-tooltip-message"
 >
-  <span role="img" aria-label="tip">💡</span>
+  <button type="button" className="example-button">
+    Magic tooltip message
+  </button>
 </Tooltip>`}
           </CommonHighlighter>
         </div>
@@ -373,15 +376,17 @@ export default function App() {
         <div className="example-area">
           <h3>Toggle type</h3>
           <div className="playground">
-            Magic tooltip message
             <Tooltip message="Basic tooltip message" toggle>
-              <span role="img" aria-label="tip">💡</span>
+              <button type="button" className="example-button">
+                Magic tooltip message
+              </button>
             </Tooltip>
           </div>
           <CommonHighlighter>
-            {`Magic tooltip message
-<Tooltip message="Basic tooltip message" toggle>
-  <span role="img" aria-label="tip">💡</span>
+            {`<Tooltip message="Basic tooltip message" toggle>
+  <button type="button" className="example-button">
+    Magic tooltip message
+  </button>
 </Tooltip>`}
           </CommonHighlighter>
         </div>

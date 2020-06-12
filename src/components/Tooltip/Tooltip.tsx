@@ -67,7 +67,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           message={message}
           messageStyle={messageStyle}
           messageClassName={messageClassName}
-          triggerElement={triggerElementRef.current}
+          triggerElement={triggerElementRef.current!.children[0]}
           onExited={handleHide}
         />
       )}
