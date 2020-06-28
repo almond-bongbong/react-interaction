@@ -12,7 +12,6 @@ import styles from './TooltipMessage.style.css';
 import { withNewline } from '../../lib/ReactStringUtil';
 import useForceUpdate from '../../hooks/useForceUpdate';
 import { hasWindow } from '../../lib/browser';
-import { EventHandler } from '../../lib/EventHandler';
 import Portal from '../Portal';
 import { CSSTransition } from 'react-transition-group';
 
@@ -77,11 +76,9 @@ const TooltipMessage: React.FC<TooltipMessageProps> = ({
   };
 
   useEffect(() => {
-    if (hasWindow())
-      EventHandler.addEventListener('resize.tooltip', forceUpdate);
-
+    if (hasWindow()) document.addEventListener('resize', forceUpdate);
     return () => {
-      if (hasWindow()) EventHandler.removeEventListener('resize.tooltip');
+      if (hasWindow()) document.removeEventListener('resize', forceUpdate);
     };
   }, []);
 
