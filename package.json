@@ -26,10 +26,8 @@
     "react-transition-group": "^4.3.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.4",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "react-transition-group": "^4.3.0"
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
