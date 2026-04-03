@@ -10,7 +10,7 @@
     "react-dom": "file:../node_modules/react-dom",
     "react-interaction": "file:..",
     "react-scripts": "^5.0.1",
-    "react-syntax-highlighter": "^12.2.1"
+    "react-syntax-highlighter": "^16.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
